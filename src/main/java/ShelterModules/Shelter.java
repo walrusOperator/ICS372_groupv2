@@ -6,13 +6,20 @@ import java.util.List;
 public class Shelter {
     private List<Animal> animalList = new ArrayList<>();
     private final String shelterID;
+    private String shelterName;
+    private static boolean receiving = true;
 
-    Shelter(String shelterId){
+    Shelter(String shelterID){
+        this.shelterID = shelterID;
+        shelterName = "unlisted";
+    }
+    Shelter(String shelterId, String name){
         this.shelterID = shelterId;
+        shelterName = name;
     }
 
     public boolean isReceiving(){
-        return true;
+        return receiving;
     }
 
     public List<Animal> getAnimalList() {
@@ -50,8 +57,10 @@ public class Shelter {
      */
     public static void changeReceiving(String selected, boolean status) {
         if(status){
+            receiving = true;
             System.out.println("Receiving enabled for shelter " + selected + "\n");
         } else {
+            receiving = false;
             System.out.println("Receiving disabled for shelter " + selected + "\n");
         }
     }

@@ -1,16 +1,18 @@
 package ShelterModules;
 
-import ShelterModules.Animal;
-import ShelterModules.Shelter;
-import ShelterModules.ShelterList;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
 
 public class Utilities {
 
@@ -67,5 +69,12 @@ public class Utilities {
         }
     }
 
+    public static Document readXML(String filename){
+        File xmlfile = new File(filename);
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.parse(xmlfile);
 
+        return doc;
+    }
 }

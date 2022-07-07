@@ -4,6 +4,7 @@ import org.json.simple.*;
 import org.json.simple.JSONObject;
 
 import java.util.*;
+import org.w3c.dom.Document;
 
 public class ShelterList {
     Map<String, Shelter> mapOfShelters = new HashMap<>();
@@ -11,11 +12,17 @@ public class ShelterList {
     /**
      * Reads in specified JSON file to fill out the ShelterModules.ShelterList
      */
-    public void addIncoming(String filename) {
+    public void addIncomingJSON(String filename) {
         JSONArray j = Utilities.readJSON(filename);
 //      https://howtodoinjava.com/java/library/json-simple-read-write-json-examples/
         assert j != null;
         j.forEach(animal -> parseAnimalObject( (JSONObject) animal));
+    }
+
+    public void addIncomingXML(String filename){
+        Document doc = Utilities.readXML(filename);
+
+
     }
 
     /**

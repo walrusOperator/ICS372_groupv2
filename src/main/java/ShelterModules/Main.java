@@ -22,7 +22,7 @@ public class Main {
             //call to add all shelters and animals from JSON file
             case 1:
                 filename = "Project1_input.json";
-                shelterMap.addIncoming(filename);
+                shelterMap.addIncomingJSON(filename);
                 break;
 
             //validate shelter ID, if shelter exists create ShelterModules.Animal object and add to existing ShelterModules.Shelter object
