@@ -16,11 +16,13 @@ public class Main {
     public static void userMenu(int userOption, ShelterList shelterMap) {
 
         String selected;
+        String filename;
 
         switch (userOption) {
             //call to add all shelters and animals from JSON file
             case 1:
-                shelterMap.addIncoming();
+                filename = "Project1_input.json";
+                shelterMap.addIncoming(filename);
                 break;
 
             //validate shelter ID, if shelter exists create ShelterModules.Animal object and add to existing ShelterModules.Shelter object
@@ -69,7 +71,8 @@ public class Main {
 
             //call ShelterModules.Utilities method to create a JSON file of the shelterMap hashmap
             case 7:
-                Utilities.writeJSON(shelterMap);
+                filename = "ProjectOutput.json";
+                Utilities.writeJSON(shelterMap, filename);
                 break;
         }
     }

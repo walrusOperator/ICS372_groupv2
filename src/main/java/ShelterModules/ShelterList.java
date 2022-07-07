@@ -11,8 +11,8 @@ public class ShelterList {
     /**
      * Reads in specified JSON file to fill out the ShelterModules.ShelterList
      */
-    public void addIncoming() {
-        JSONArray j = Utilities.readJSON();
+    public void addIncoming(String filename) {
+        JSONArray j = Utilities.readJSON(filename);
 //      https://howtodoinjava.com/java/library/json-simple-read-write-json-examples/
         assert j != null;
         j.forEach(animal -> parseAnimalObject( (JSONObject) animal));

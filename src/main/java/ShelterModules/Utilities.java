@@ -18,11 +18,11 @@ public class Utilities {
      * Method used to convert a json file into json array
      * @return (JSONArray) - animals parsed from json input file
      */
-    public static JSONArray readJSON(){
+    public static JSONArray readJSON(String filename){
         JSONParser parser = new JSONParser();
 
         try {
-            JSONObject obj = (JSONObject) parser.parse(new FileReader("Project1_input.json"));
+            JSONObject obj = (JSONObject) parser.parse(new FileReader(filename));
             return (JSONArray)obj.get("shelter_roster");
         }
         catch(Exception e){
@@ -35,7 +35,7 @@ public class Utilities {
      * Method used to create a JSON output file of the given shelterList
      * @param roster - (ShelterModules.ShelterList) shelterList used to create the JSON output file
      */
-    public static void writeJSON(ShelterList roster){
+    public static void writeJSON(ShelterList roster, String filename){
         JSONArray sheltersToWrite = new JSONArray();
         JSONObject fileData = new JSONObject();
         List<Shelter> allShelters = new ArrayList<>(roster.getShelters());
@@ -59,7 +59,7 @@ public class Utilities {
         }
         fileData.put("shelter_roster", sheltersToWrite);
 
-        try(FileWriter file = new FileWriter("Project1_output.json")){
+        try(FileWriter file = new FileWriter(filename)){
             file.write(fileData.toJSONString());
             file.flush();
         }catch(IOException e){
