@@ -70,11 +70,17 @@ public class Utilities {
     }
 
     public static Document readXML(String filename){
-        File xmlfile = new File(filename);
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document doc = builder.parse(xmlfile);
-
-        return doc;
+        //https://initialcommit.com/blog/how-to-read-xml-file-in-java
+        try {
+            File xmlFile = new File(filename);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(xmlFile);
+            doc.getDocumentElement().normalize();
+            return doc;
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

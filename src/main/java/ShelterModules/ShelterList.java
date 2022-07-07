@@ -5,6 +5,9 @@ import org.json.simple.JSONObject;
 
 import java.util.*;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class ShelterList {
     Map<String, Shelter> mapOfShelters = new HashMap<>();
@@ -21,6 +24,36 @@ public class ShelterList {
 
     public void addIncomingXML(String filename){
         Document doc = Utilities.readXML(filename);
+        NodeList nodeList = doc.getElementsByTagName("Shelter");
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            //https://stackoverflow.com/questions/4138754/getting-an-attribute-value-in-xml-element
+            String id = nodeList.item(i).getAttributes().getNamedItem("id").getNodeValue();
+            String name = doc.getElementsByTagName("Name").item(i).getNodeValue();
+            Shelter shelter = new Shelter(id, name);
+            mapOfShelters.put(id, shelter);
+
+            NodeList animalList = doc.getElementsByTagName("Animal");
+            for (int j = 0; j < animalList.getLength(); j++) {
+                Node aniNode = nodeList.item(j);
+                Element tempEle = (Element)aniNode;
+
+                String aniType = aniNode.getAttributes().getNamedItem("type").getNodeValue();
+                String aniID = aniNode.getAttributes().getNamedItem("id").getNodeValue();
+                String aniName = tempEle.getElementsByTagName("Name").item(0).getTextContent();
+                String aniWeightUnit = tempEle.getElementsByTagName("Weight").item(0).getAttributes().getNamedItem("unit").getNodeValue();
+                Double aniWeight = Double.parseDouble(tempEle.getElementsByTagName("Weight").item(0).getTextContent());
+                Long aniReceipt = Long.parseLong(tempEle.getElementsByTagName("ReceiptDate").item(0).getTextContent());
+
+                Animal tempAnimal = new Animal(aniType,aniName,aniID,aniWeight,aniReceipt);
+
+                Shelter tempShelter = mapOfShelters.get(id);
+                List<Animal> tempAnimalList = tempShelter.getAnimalList(); //get current list from shelter object in map
+                tempAnimalList.add(tempAnimal); //add new animal to list
+                tempShelter.setAnimalList(tempAnimalList); //set revised animal list into ShelterModules.Shelter Object
+                mapOfShelters.put(id, tempShelter); //replace previous map entry with updated key value pair.
+            }
+        }
 
 
     }

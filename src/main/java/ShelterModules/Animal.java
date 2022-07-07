@@ -6,6 +6,7 @@ public class Animal {
     private String animal_ID;
     private String animal_Type;
     private String animal_Name;
+    private String weight_unit;
     private double animal_weight;
     private long receipt_date;
 
