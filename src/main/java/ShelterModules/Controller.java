@@ -4,11 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.controlsfx.control.action.Action;
 
 //import static ShelterModules.Main.shelterMap;
 
 public class Controller {
+    @FXML
+    private AnchorPane scenePane;
     @FXML
     private Label myLabel;
     @FXML
@@ -27,6 +31,8 @@ public class Controller {
     private Button exportButton;
     @FXML
     private Button exitButton;
+
+    Stage stage;
 
     public void importing(ActionEvent e){
         System.out.println("Importing");
@@ -51,7 +57,9 @@ public class Controller {
         System.out.println("Exporting");
     }
     public void exit(ActionEvent e){
+        stage = (Stage) scenePane.getScene().getWindow();
         System.out.println("Exiting");
+        stage.close();
     }
 }
 
