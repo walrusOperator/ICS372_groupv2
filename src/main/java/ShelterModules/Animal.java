@@ -9,6 +9,10 @@ public class Animal {
     private double animal_weight;
     private long receipt_date;
 
+
+
+    private Shelter animal_shelter;
+
     /**
      * ShelterModules.Animal Constructor - responsible for creating/setting animal variables with the passed on parameters
      *
@@ -24,8 +28,14 @@ public class Animal {
         this.animal_ID = animal_id;
         this.animal_weight = animal_weight;
         this.receipt_date = receipt_date;
-    }
 
+    }
+    public Shelter getAnimal_shelter() {
+        return animal_shelter;
+    }
+    public void setAnimal_shelter(Shelter animal_shelter){
+        this.animal_shelter = animal_shelter;
+    }
     /**
      * getAnimal_ID method - responsible for getting the animal ID
      * @return
