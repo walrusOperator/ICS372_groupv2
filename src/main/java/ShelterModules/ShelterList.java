@@ -47,11 +47,7 @@ public class ShelterList {
 
                 Animal tempAnimal = new Animal(aniType,aniName,aniID,aniWeight,aniReceipt);
 
-                Shelter tempShelter = mapOfShelters.get(id);
-                List<Animal> tempAnimalList = tempShelter.getAnimalList(); //get current list from shelter object in map
-                tempAnimalList.add(tempAnimal); //add new animal to list
-                tempShelter.setAnimalList(tempAnimalList); //set revised animal list into ShelterModules.Shelter Object
-                mapOfShelters.put(id, tempShelter); //replace previous map entry with updated key value pair.
+                addAnimalToShelter(id, tempAnimal);
             }
         }
 
@@ -86,11 +82,7 @@ public class ShelterList {
                 Shelter tempShelter = new Shelter(shelter_id);
                 mapOfShelters.put(shelter_id, tempShelter);
             }
-            Shelter tempShelter = mapOfShelters.get(shelter_id);
-            List<Animal> tempAnimalList = tempShelter.getAnimalList(); //get current list from shelter object in map
-            tempAnimalList.add(tempAnimal); //add new animal to list
-            tempShelter.setAnimalList(tempAnimalList); //set revised animal list into ShelterModules.Shelter Object
-            mapOfShelters.put(shelter_id, tempShelter); //replace previous map entry with updated key value pair.
+            addAnimalToShelter(shelter_id, tempAnimal);
         }
     }
 
@@ -162,5 +154,13 @@ public class ShelterList {
             }
             System.out.println();
         }
+    }
+
+    public void addAnimalToShelter(String id, Animal animal){
+        Shelter tempShelter = mapOfShelters.get(id);
+        List<Animal> tempAnimalList = tempShelter.getAnimalList(); //get current list from shelter object in map
+        tempAnimalList.add(animal); //add new animal to list
+        tempShelter.setAnimalList(tempAnimalList); //set revised animal list into ShelterModules.Shelter Object
+        mapOfShelters.put(animal, tempShelter); //replace previous map entry with updated key value pair.
     }
 }
