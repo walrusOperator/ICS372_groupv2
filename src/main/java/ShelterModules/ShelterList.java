@@ -42,8 +42,8 @@ public class ShelterList {
                 String aniID = aniNode.getAttributes().getNamedItem("id").getNodeValue();
                 String aniName = tempEle.getElementsByTagName("Name").item(0).getTextContent();
                 String aniWeightUnit = tempEle.getElementsByTagName("Weight").item(0).getAttributes().getNamedItem("unit").getNodeValue();
-                Double aniWeight = Double.parseDouble(tempEle.getElementsByTagName("Weight").item(0).getTextContent());
-                Long aniReceipt = Long.parseLong(tempEle.getElementsByTagName("ReceiptDate").item(0).getTextContent());
+                double aniWeight = Double.parseDouble(tempEle.getElementsByTagName("Weight").item(0).getTextContent());
+                long aniReceipt = Long.parseLong(tempEle.getElementsByTagName("ReceiptDate").item(0).getTextContent());
 
                 Animal tempAnimal = new Animal(aniType,aniName,aniID,aniWeight,aniReceipt);
 
