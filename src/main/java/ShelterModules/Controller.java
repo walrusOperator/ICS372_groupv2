@@ -8,7 +8,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.controlsfx.control.action.Action;
 
-//import static ShelterModules.Main.shelterMap;
+import java.io.File;
+
 
 public class Controller {
     @FXML
@@ -33,13 +34,23 @@ public class Controller {
     private Button exitButton;
 
     Stage stage;
+    String selected;
+    private static final ShelterList shelterMap = new ShelterList();
 
     public void importing(ActionEvent e){
-        System.out.println("Importing");
-//        shelterMap.addIncoming();
+        String filename = "Project1_input.json";
+        shelterMap.addIncomingJSON(filename);
     }
     public void addingIncoming(ActionEvent e){
         System.out.println("Adding Animal");
+        shelterMap.showShelters();
+        selected = UserInterface.shelterSelection();
+        if(ShelterList.shelterSearch(selected, shelterMap)) {
+            Animal newAnimal = Animal.createNewAnimal(shelterMap);
+            if(newAnimal != null) {
+                Shelter.addUserCreatedAnimal(newAnimal, selected, shelterMap);
+            }
+        }
     }
     public void enable(ActionEvent e){
         System.out.println("Enable receiving");
@@ -61,6 +72,7 @@ public class Controller {
         System.out.println("Exiting");
         stage.close();
     }
+    
 }
 
 
