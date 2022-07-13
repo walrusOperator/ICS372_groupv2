@@ -75,7 +75,6 @@ public class Shelter {
             List<Animal> tempList = tempShelter.getAnimalList();
             tempList.add(newAnimal);
             tempShelter.setAnimalList(tempList);
-            newAnimal.setAnimal_shelter(tempShelter);
              System.out.println("New ShelterModules.Animal has been added.\n");
         } catch (Exception e) {
             System.out.println("ShelterModules.Animal could not be added.\n");
