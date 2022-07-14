@@ -8,7 +8,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -31,6 +33,38 @@ public class Utilities {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Map loadJSON(String filename){
+        JSONArray shelters = readJSON(filename);
+        Map<String, Shelter> shelterRoster = new HashMap<>();
+        try{
+            for (Object tempshelter : shelters.toArray()) {
+                JSONObject shelter = (JSONObject) tempshelter;
+                String id = (String)shelter.get("shelter_id");
+                String name = (String)shelter.get("shelter_name");
+
+                Shelter currShelter = new Shelter(id,name);
+
+                JSONArray animallist = (JSONArray) shelter.get("animals");
+                for (Object tempanimal: animallist) {
+                    JSONObject animal = (JSONObject) tempanimal;
+                    String aniType = (String)animal.get("animal_type");
+                    String aniName = (String)animal.get("animal_name");
+                    String aniID = (String)animal.get("animal_id");
+                    double aniWeight = (Double) animal.get("weight");
+                    String aniUnit = (String)animal.get("weight_unit");
+                    long aniReceipt = (Long) animal.get("receipt_date");
+                    Animal ani = new Animal(aniType,aniName,aniID,aniWeight,aniUnit,aniReceipt);
+                    currShelter.addAnimal(ani);
+                }
+                shelterRoster.put(id, currShelter);
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return new HashMap();
     }
 
     /**

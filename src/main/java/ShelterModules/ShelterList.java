@@ -45,7 +45,7 @@ public class ShelterList {
                 double aniWeight = Double.parseDouble(tempEle.getElementsByTagName("Weight").item(0).getTextContent());
                 long aniReceipt = Long.parseLong(tempEle.getElementsByTagName("ReceiptDate").item(0).getTextContent());
 
-                Animal tempAnimal = new Animal(aniType,aniName,aniID,aniWeight,aniReceipt);
+                Animal tempAnimal = new Animal(aniType,aniName,aniID,aniWeight,aniWeightUnit,aniReceipt);
 
                 addAnimalToShelter(id, tempAnimal);
             }
@@ -77,7 +77,7 @@ public class ShelterList {
 
         // if type is valid, creates ShelterModules.Animal and add to correct ShelterModules.Shelter. Creates shelter if it doesn't exist
         if (validAnimal(animal_type)) {
-            Animal tempAnimal = new Animal(animal_type, animal_name, animal_id, animal_weight, receipt_date);
+            Animal tempAnimal = new Animal(animal_type, animal_name, animal_id, animal_weight, "", receipt_date);
             if (!(mapOfShelters.containsKey(shelter_id))) {
                 Shelter tempShelter = new Shelter(shelter_id);
                 mapOfShelters.put(shelter_id, tempShelter);

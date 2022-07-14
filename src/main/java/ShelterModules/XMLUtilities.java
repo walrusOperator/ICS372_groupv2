@@ -9,7 +9,7 @@ import java.io.Reader;
 
 public class XMLUtilities {
 
-    public JSONObject XMLtoJSON(String filename){
+/*    public JSONObject XMLtoJSON(String filename){
         File xmlfile = new File(filename);
         Reader fileReader = new FileReader(xmlfile);
         BufferedReader bufRead = new BufferedReader(fileReader);
@@ -25,5 +25,5 @@ public class XMLUtilities {
         System.out.println("XML to String: ");
         System.out.println(xmlString);
         return XML.toJSONObject(xmlString);
-    }
+    }*/
 }

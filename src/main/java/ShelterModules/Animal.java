@@ -19,11 +19,12 @@ public class Animal {
      * @param animal_weight
      * @param receipt_date
      */
-    public Animal(String animal_type, String animal_name, String animal_id, double animal_weight, long receipt_date){
+    public Animal(String animal_type, String animal_name, String animal_id, double animal_weight,String weight_unit, long receipt_date){
         this.animal_Type = animal_type;
         this.animal_Name = animal_name;
         this.animal_ID = animal_id;
         this.animal_weight = animal_weight;
+        this.weight_unit = weight_unit;
         this.receipt_date = receipt_date;
 
     }
@@ -111,7 +112,7 @@ public class Animal {
                 System.out.println("Please enter the receipt date: ");
                 long receipt = scan.nextLong();
                 scan.nextLine();
-                return new Animal(type, name, id, weight, receipt);
+                return new Animal(type, name, id, weight, "", receipt);
             }catch (Exception e){
                 System.out.println("ShelterModules.Animal could not be created\n");
                 return null;

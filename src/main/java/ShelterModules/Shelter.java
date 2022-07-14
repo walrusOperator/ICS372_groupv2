@@ -7,11 +7,12 @@ public class Shelter {
     private List<Animal> animalList = new ArrayList<>();
     private final String shelterID;
     private String shelterName;
-    private static boolean receiving = true;
+    private static boolean receiving;
 
     Shelter(String shelterID){
         this.shelterID = shelterID;
         shelterName = "unlisted";
+        receiving = true;
     }
     Shelter(String shelterId, String name){
         this.shelterID = shelterId;
@@ -56,7 +57,7 @@ public class Shelter {
      * @param status - (boolean) true enables receiving, false disables
      */
     public static void changeReceiving(String selected, boolean status) {
-        if(status){
+        if(!status){
             receiving = true;
             System.out.println("Receiving enabled for shelter " + selected + "\n");
         } else {
@@ -79,6 +80,10 @@ public class Shelter {
         } catch (Exception e) {
             System.out.println("ShelterModules.Animal could not be added.\n");
         }
+    }
+
+    public void addAnimal(Animal animal){
+        animalList.add(animal);
     }
 }
 
