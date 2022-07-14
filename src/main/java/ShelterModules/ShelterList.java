@@ -12,6 +12,10 @@ import org.w3c.dom.NodeList;
 public class ShelterList {
     Map<String, Shelter> mapOfShelters = new HashMap<>();
 
+    public void addHashMap(HashMap<String, Shelter> shelters){
+        mapOfShelters.putAll(shelters);
+    }
+
     /**
      * Reads in specified JSON file to fill out the ShelterModules.ShelterList
      */

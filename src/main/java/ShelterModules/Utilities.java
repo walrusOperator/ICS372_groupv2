@@ -35,9 +35,9 @@ public class Utilities {
         return null;
     }
 
-    public static Map loadJSON(String filename){
+    public static HashMap loadJSON(String filename){
         JSONArray shelters = readJSON(filename);
-        Map<String, Shelter> shelterRoster = new HashMap<>();
+        HashMap<String, Shelter> shelterRoster = new HashMap<>();
         try{
             for (Object tempshelter : shelters.toArray()) {
                 JSONObject shelter = (JSONObject) tempshelter;
@@ -52,9 +52,17 @@ public class Utilities {
                     String aniType = (String)animal.get("animal_type");
                     String aniName = (String)animal.get("animal_name");
                     String aniID = (String)animal.get("animal_id");
-                    double aniWeight = (Double) animal.get("weight");
+                    Object temp = animal.get("weight");
                     String aniUnit = (String)animal.get("weight_unit");
                     long aniReceipt = (Long) animal.get("receipt_date");
+                    double aniWeight;
+
+                    if(temp instanceof Double){
+                        aniWeight = (Double) temp;
+                    } else {
+                        aniWeight = ((Long) temp).doubleValue();
+                    }
+
                     Animal ani = new Animal(aniType,aniName,aniID,aniWeight,aniUnit,aniReceipt);
                     currShelter.addAnimal(ani);
                 }
@@ -64,7 +72,7 @@ public class Utilities {
             e.printStackTrace();
         }
 
-        return new HashMap();
+        return shelterRoster;
     }
 
     /**

@@ -1,12 +1,14 @@
 package ShelterModules;
 
-import ShelterModules.Animal;
+
+import java.util.HashMap;
 
 public class Main {
     private static final ShelterList shelterMap = new ShelterList();
     @SuppressWarnings("InfiniteLoopStatement")
     public static void main(String[] args) {
         do {
+            shelterMap.addHashMap(Utilities.loadJSON("savedataexample.json"));
             UserInterface.printMenu();
             int userSelection = UserInterface.userOption();
             userMenu(userSelection, shelterMap);
