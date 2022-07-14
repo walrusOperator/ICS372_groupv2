@@ -85,21 +85,29 @@ public class Utilities {
         List<Shelter> allShelters = new ArrayList<>(roster.getShelters());
 
         for (Shelter currentShelter : allShelters) {
+            JSONObject currentShelterData = new JSONObject();
+            JSONArray animalsInShelterData = new JSONArray();
+
+            currentShelterData.put("shelter_id", currentShelter.getShelterID());
+            currentShelterData.put("shelter_name", currentShelter.getShelterName());
             for (int j = 0; j < currentShelter.size(); j++) {
                 Animal currentAnimal = currentShelter.getAnimalList().get(j);
                 JSONObject currentAnimalData = new JSONObject();
+
                 try {
-                    currentAnimalData.put("shelter_id", currentShelter.toString());
                     currentAnimalData.put("animal_type", currentAnimal.getAnimal_Type());
                     currentAnimalData.put("animal_name", currentAnimal.getAnimal_Name());
                     currentAnimalData.put("animal_id", currentAnimal.getAnimal_ID());
                     currentAnimalData.put("weight", currentAnimal.getAnimal_weight());
+                    currentAnimalData.put("weight_unit", currentAnimal.getWeight_unit());
                     currentAnimalData.put("receipt_date", currentAnimal.getReceipt_date());
                 }catch (Exception e){
                     System.out.println("File creation unsuccessful");
                 }
-                sheltersToWrite.add(currentAnimalData);
+                animalsInShelterData.add(currentAnimalData);
             }
+            currentShelterData.put("animals", animalsInShelterData);
+            sheltersToWrite.add(currentShelterData);
         }
         fileData.put("shelter_roster", sheltersToWrite);
 

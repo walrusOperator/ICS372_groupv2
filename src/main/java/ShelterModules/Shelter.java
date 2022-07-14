@@ -17,6 +17,7 @@ public class Shelter {
     Shelter(String shelterId, String name){
         this.shelterID = shelterId;
         shelterName = name;
+        receiving = true;
     }
 
     public boolean isReceiving(){
@@ -32,11 +33,20 @@ public class Shelter {
     }
 
     public String toString(){
+        return shelterName + ": " + shelterID;
+    }
+
+    public String getShelterID(){
         return shelterID;
     }
+
+    public String getShelterName(){
+        return shelterName;
+    }
+
     /*
-    returns a string of all animals in the list for specific shelter
-     */
+        returns a string of all animals in the list for specific shelter
+         */
     public String showAnimals(){
         String str = "ShelterModules.Shelter: " + shelterID + "\n";
 

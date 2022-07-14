@@ -69,6 +69,10 @@ public class Animal {
         return animal_weight;
     }
 
+    public String getWeight_unit(){
+        return weight_unit;
+    }
+
     /**
      * getReceipt_date() method - responsible for getting the receipt date of animal
      * @return
