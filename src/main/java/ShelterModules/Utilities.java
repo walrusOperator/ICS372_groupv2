@@ -24,9 +24,9 @@ public class Utilities {
      */
     public static JSONArray readJSON(String filename){
         JSONParser parser = new JSONParser();
-
         try {
-            JSONObject obj = (JSONObject) parser.parse(new FileReader(filename));
+            FileReader inputFile = new FileReader(filename);
+            JSONObject obj = (JSONObject) parser.parse(inputFile);
             return (JSONArray)obj.get("shelter_roster");
         }
         catch(Exception e){
@@ -38,6 +38,10 @@ public class Utilities {
     public static HashMap loadJSON(String filename){
         JSONArray shelters = readJSON(filename);
         HashMap<String, Shelter> shelterRoster = new HashMap<>();
+
+        if(shelters == null){
+            return new HashMap<>();
+        }
         try{
             for (Object tempshelter : shelters.toArray()) {
                 JSONObject shelter = (JSONObject) tempshelter;

@@ -8,7 +8,7 @@ public class Main {
     @SuppressWarnings("InfiniteLoopStatement")
     public static void main(String[] args) {
         do {
-            shelterMap.addHashMap(Utilities.loadJSON("savedataexample.json"));
+            shelterMap.addHashMap(Utilities.loadJSON("Save_Data.json"));
             UserInterface.printMenu();
             int userSelection = UserInterface.userOption();
             userMenu(userSelection, shelterMap);
@@ -75,6 +75,10 @@ public class Main {
             case 7:
                 filename = "ProjectOutput.json";
                 Utilities.writeJSON(shelterMap, filename);
+                break;
+            case 8:
+                filename = "sample.xml";
+                Utilities.readXML(filename);
                 break;
         }
     }
