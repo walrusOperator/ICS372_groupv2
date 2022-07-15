@@ -32,26 +32,54 @@ public class ShelterList {
 
         for (int i = 0; i < nodeList.getLength(); i++) {
             //https://stackoverflow.com/questions/4138754/getting-an-attribute-value-in-xml-element
-            String id = nodeList.item(i).getAttributes().getNamedItem("id").getNodeValue();
-            String name = doc.getElementsByTagName("Name").item(i).getNodeValue();
-            Shelter shelter = new Shelter(id, name);
-            mapOfShelters.put(id, shelter);
+            Node currNode = nodeList.item(i);
+            if(currNode.getNodeType() == Node.ELEMENT_NODE) {
+                String id = currNode.getAttributes().getNamedItem("id").getNodeValue();
+                String name = doc.getElementsByTagName("Name").item(i).getNodeValue();
+                Shelter shelter = new Shelter(id, name);
+                mapOfShelters.put(id, shelter);
 
-            NodeList animalList = doc.getElementsByTagName("Animal");
-            for (int j = 0; j < animalList.getLength(); j++) {
-                Node aniNode = nodeList.item(j);
-                Element tempEle = (Element)aniNode;
+                NodeList animalList = currNode.getChildNodes();
+                for (int j = 0; j < animalList.getLength(); j++) {
+                    Node aniNode = nodeList.item(j);
+                    if(aniNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element aniEle = (Element) aniNode;
+                        String aniType;
+                        String aniID;
+                        String aniName;
+                        String aniWeightUnit;
+                        double aniWeight;
+                        long aniReceipt;
+                        if (aniNode.getAttributes().getNamedItem("type") != null) {
+                            aniType = aniNode.getAttributes().getNamedItem("type").getNodeValue();
+                            aniID = aniNode.getAttributes().getNamedItem("id").getNodeValue();
+                        } else{
+                            aniType = "unlisted";
+                            aniID = "unlisted";
+                        }
+                        if (aniEle.getElementsByTagName("Name").item(0) != null) {
+                            aniName = aniEle.getElementsByTagName("Name").item(0).getTextContent();
+                        } else{
+                            aniName = "unlisted";
+                        }
+                        if (aniNode.getAttributes().getNamedItem("Weight") != null) {
+                            aniWeightUnit = aniEle.getElementsByTagName("Weight").item(0).getAttributes().getNamedItem("unit").getNodeValue();
+                            aniWeight = Double.parseDouble(aniEle.getElementsByTagName("Weight").item(0).getTextContent());
+                        } else{
+                            aniWeightUnit = "lb";
+                            aniWeight = 0.0;
+                        }
+                        if (aniEle.getElementsByTagName("ReceiptDate").item(0) != null) {
+                            aniReceipt = Long.parseLong(aniEle.getElementsByTagName("ReceiptDate").item(0).getTextContent());
+                        } else{
+                            aniReceipt = 1111111111;
+                        }
 
-                String aniType = aniNode.getAttributes().getNamedItem("type").getNodeValue();
-                String aniID = aniNode.getAttributes().getNamedItem("id").getNodeValue();
-                String aniName = tempEle.getElementsByTagName("Name").item(0).getTextContent();
-                String aniWeightUnit = tempEle.getElementsByTagName("Weight").item(0).getAttributes().getNamedItem("unit").getNodeValue();
-                double aniWeight = Double.parseDouble(tempEle.getElementsByTagName("Weight").item(0).getTextContent());
-                long aniReceipt = Long.parseLong(tempEle.getElementsByTagName("ReceiptDate").item(0).getTextContent());
+                        Animal tempAnimal = new Animal(aniType, aniName, aniID, aniWeight, aniWeightUnit, aniReceipt);
 
-                Animal tempAnimal = new Animal(aniType,aniName,aniID,aniWeight,aniWeightUnit,aniReceipt);
-
-                addAnimalToShelter(id, tempAnimal);
+                        addAnimalToShelter(id, tempAnimal);
+                    }
+                }
             }
         }
 

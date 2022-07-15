@@ -12,6 +12,7 @@ public class Main {
             UserInterface.printMenu();
             int userSelection = UserInterface.userOption();
             userMenu(userSelection, shelterMap);
+            Utilities.writeJSON(shelterMap, "Save_Data.json");
         }while(true);
     }
 
@@ -78,7 +79,7 @@ public class Main {
                 break;
             case 8:
                 filename = "sample.xml";
-                Utilities.readXML(filename);
+                shelterMap.addIncomingXML(filename);
                 break;
         }
     }
