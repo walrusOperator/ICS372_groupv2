@@ -33,15 +33,18 @@ public class ShelterList {
         for (int i = 0; i < nodeList.getLength(); i++) {
             //https://stackoverflow.com/questions/4138754/getting-an-attribute-value-in-xml-element
             Node currNode = nodeList.item(i);
+
             if(currNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element shelterEle = (Element) currNode;
                 String id = currNode.getAttributes().getNamedItem("id").getNodeValue();
-                String name = doc.getElementsByTagName("Name").item(i).getNodeValue();
+                String name = shelterEle.getElementsByTagName("Name").item(0).getChildNodes().item(0).getNodeValue();
                 Shelter shelter = new Shelter(id, name);
                 mapOfShelters.put(id, shelter);
 
                 NodeList animalList = currNode.getChildNodes();
                 for (int j = 0; j < animalList.getLength(); j++) {
-                    Node aniNode = nodeList.item(j);
+                    Node aniNode = animalList.item(j);
+
                     if(aniNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element aniEle = (Element) aniNode;
                         String aniType;
@@ -50,6 +53,7 @@ public class ShelterList {
                         String aniWeightUnit;
                         double aniWeight;
                         long aniReceipt;
+
                         if (aniNode.getAttributes().getNamedItem("type") != null) {
                             aniType = aniNode.getAttributes().getNamedItem("type").getNodeValue();
                             aniID = aniNode.getAttributes().getNamedItem("id").getNodeValue();
