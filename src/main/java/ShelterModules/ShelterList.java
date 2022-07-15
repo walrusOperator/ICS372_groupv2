@@ -70,7 +70,7 @@ public class ShelterList {
                             aniWeightUnit = aniEle.getElementsByTagName("Weight").item(0).getAttributes().getNamedItem("unit").getNodeValue();
                             aniWeight = Double.parseDouble(aniEle.getElementsByTagName("Weight").item(0).getTextContent());
                         } else{
-                            aniWeightUnit = "lb";
+                            aniWeightUnit = "";
                             aniWeight = 0.0;
                         }
                         if (aniEle.getElementsByTagName("ReceiptDate").item(0) != null) {
@@ -78,10 +78,11 @@ public class ShelterList {
                         } else{
                             aniReceipt = 1111111111;
                         }
-
-                        Animal tempAnimal = new Animal(aniType, aniName, aniID, aniWeight, aniWeightUnit, aniReceipt);
-
-                        addAnimalToShelter(id, tempAnimal);
+                        //checks for blank animal entry
+                        if(!(aniType.equals("unlisted") && aniName.equals("unlisted")&& aniID.equals("unlisted") && aniWeight == 0.0 && aniWeightUnit.equals("") && aniReceipt == 1111111111)) {
+                            Animal tempAnimal = new Animal(aniType, aniName, aniID, aniWeight, aniWeightUnit, aniReceipt);
+                            addAnimalToShelter(id, tempAnimal);
+                        }
                     }
                 }
             }
