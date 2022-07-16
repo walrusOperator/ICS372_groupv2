@@ -185,7 +185,8 @@ public class ShelterList {
     public static void showAllAnimals (ShelterList shelterMap) {
         List<Shelter> allShelters = new ArrayList<>(shelterMap.getShelters());
         for (Shelter currentShelter : allShelters) {
-            System.out.println("ShelterModules.Shelter ID: " + currentShelter);
+            System.out.println("Shelter ID: " + currentShelter.getShelterID());
+            System.out.println("Shelter Name: " + currentShelter.getShelterName());
             for (int j = 0; j < currentShelter.size(); j++) {
                 System.out.println(currentShelter.getAnimalList().get(j));
             }

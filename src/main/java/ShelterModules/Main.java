@@ -7,8 +7,8 @@ public class Main {
     private static final ShelterList shelterMap = new ShelterList();
     @SuppressWarnings("InfiniteLoopStatement")
     public static void main(String[] args) {
+        shelterMap.addHashMap(Utilities.loadJSON("Save_Data.json"));
         do {
-            shelterMap.addHashMap(Utilities.loadJSON("Save_Data.json"));
             UserInterface.printMenu();
             int userSelection = UserInterface.userOption();
             userMenu(userSelection, shelterMap);
@@ -45,7 +45,7 @@ public class Main {
                 shelterMap.showShelters();
                 selected = UserInterface.shelterSelection();
                 if(ShelterList.shelterSearch(selected, shelterMap)) {
-                    Shelter.changeReceiving(selected, true);
+                    shelterMap.getShelter(selected).changeReceiving(true);
                 }
                 break;
 
@@ -54,7 +54,7 @@ public class Main {
                 shelterMap.showShelters();
                 selected = UserInterface.shelterSelection();
                 if(ShelterList.shelterSearch(selected, shelterMap)) {
-                    Shelter.changeReceiving(selected, false);
+                    shelterMap.getShelter(selected).changeReceiving(false);
                 }
                 break;
 

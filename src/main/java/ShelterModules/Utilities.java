@@ -47,6 +47,7 @@ public class Utilities {
                 JSONObject shelter = (JSONObject) tempshelter;
                 String id = (String)shelter.get("shelter_id");
                 String name = (String)shelter.get("shelter_name");
+                boolean receiving = (Boolean)shelter.get("shelter_receiving");
 
                 Shelter currShelter = new Shelter(id,name);
 
@@ -69,6 +70,7 @@ public class Utilities {
 
                     Animal ani = new Animal(aniType,aniName,aniID,aniWeight,aniUnit,aniReceipt);
                     currShelter.addAnimal(ani);
+                    currShelter.setReceiving(receiving);
                 }
                 shelterRoster.put(id, currShelter);
             }
@@ -94,6 +96,7 @@ public class Utilities {
 
             currentShelterData.put("shelter_id", currentShelter.getShelterID());
             currentShelterData.put("shelter_name", currentShelter.getShelterName());
+            currentShelterData.put("shelter_receiving", currentShelter.isReceiving());
             for (int j = 0; j < currentShelter.size(); j++) {
                 Animal currentAnimal = currentShelter.getAnimalList().get(j);
                 JSONObject currentAnimalData = new JSONObject();

@@ -18,7 +18,8 @@ public class UserInterface {
                 "4: Disable receiving animals\n" +
                 "5: See animals in a shelter\n" +
                 "6: See animals in ALL shelters\n" +
-                "7: Export json file");
+                "7: Export json file\n" +
+                "8: Import xml of animals");
     }
 
     public static String shelterSelection(){

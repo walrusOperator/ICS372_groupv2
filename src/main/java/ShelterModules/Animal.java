@@ -87,7 +87,7 @@ public class Animal {
      */
     @Override
     public String toString() {
-        return "ShelterModules.Animal{" +
+        return "Animal{" +
                 "animal_ID='" + animal_ID + '\'' +
                 ", animal_Type='" + animal_Type + '\'' +
                 ", animal_Name='" + animal_Name + '\'' +
@@ -118,7 +118,7 @@ public class Animal {
                 scan.nextLine();
                 return new Animal(type, name, id, weight, "", receipt);
             }catch (Exception e){
-                System.out.println("ShelterModules.Animal could not be created\n");
+                System.out.println("Animal could not be created\n");
                 return null;
             }
         } else {
