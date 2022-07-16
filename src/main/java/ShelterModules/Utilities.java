@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -154,8 +153,8 @@ public class Utilities {
 
             if(currNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element shelterEle = (Element) currNode;
-                String id = currNode.getAttributes().getNamedItem("id").getNodeValue();
-                String name = shelterEle.getElementsByTagName("Name").item(0).getChildNodes().item(0).getNodeValue();
+                String id = getAttribute(currNode, "id");
+                String name = elementString(shelterEle, "Name");
                 Shelter shelter = new Shelter(id, name);
                 roster.addShelter(id, shelter);
                 NodeList animalList = ((Element) currNode).getElementsByTagName("Animal");
@@ -164,37 +163,28 @@ public class Utilities {
 
                     if(aniNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element aniEle = (Element) aniNode;
-                        String aniType;
-                        String aniID;
-                        String aniName;
-                        String aniWeightUnit;
-                        double aniWeight;
-                        long aniReceipt;
+                        String aniType = "unlisted";
+                        String aniID = "unlisted";
+                        String aniName = "unlisted";
+                        String aniWeightUnit = "";
+                        double aniWeight = 0.0;
+                        long aniReceipt = 1111111111;
 
-                        if (aniNode.getAttributes().getNamedItem("type") != null) {
-                            aniType = aniNode.getAttributes().getNamedItem("type").getNodeValue();
-                            aniID = aniNode.getAttributes().getNamedItem("id").getNodeValue();
-                        } else{
-                            aniType = "unlisted";
-                            aniID = "unlisted";
+                        if (validAttribute(aniNode, "type")) {
+                            aniType = getAttribute(aniNode, "type");
                         }
-                        if (aniEle.getElementsByTagName("Name").item(0) != null) {
-                            aniName = aniEle.getElementsByTagName("Name").item(0).getTextContent();
-                        } else{
-                            aniName = "unlisted";
+                        if(validAttribute(aniNode, "id")){
+                            aniID = getAttribute(aniNode, "id");
                         }
-                        if (aniNode.getAttributes().getNamedItem("Weight") != null) {
-
-                            aniWeightUnit = ((Element) aniNode).getElementsByTagName("Weight").item(0).getAttributes().getNamedItem("unit").getNodeValue();
-                            aniWeight = Double.parseDouble(aniEle.getElementsByTagName("Weight").item(0).getTextContent());
-                        } else{
-                            aniWeightUnit = "";
-                            aniWeight = 0.0;
+                        if (validElement(aniEle, "Name")) {
+                            aniName = elementString(aniEle, "Name");
                         }
-                        if (aniEle.getElementsByTagName("ReceiptDate").item(0) != null) {
-                            aniReceipt = Long.parseLong(aniEle.getElementsByTagName("ReceiptDate").item(0).getTextContent());
-                        } else{
-                            aniReceipt = 1111111111;
+                        if (validElement(aniEle, "Weight")) {
+                            aniWeightUnit = getAttribute(getElementNode(aniEle, "Weight"), "unit");
+                            aniWeight = Double.parseDouble(elementString(aniEle, "Weight"));
+                        }
+                        if (validElement(aniEle, "ReceiptDate")) {
+                            aniReceipt = Long.parseLong(elementString(aniEle, "ReceiptDate"));
                         }
 
                         Animal tempAnimal = new Animal(aniType, aniName, aniID, aniWeight, aniWeightUnit, aniReceipt);
@@ -206,5 +196,29 @@ public class Utilities {
         }
 
 
+    }
+
+    public static boolean validElement(Element element, String tag){
+        if(element.getElementsByTagName(tag).item(0) != null)
+            return true;
+        return false;
+    }
+
+    public static boolean validAttribute(Node node, String tag){
+        if(node.getAttributes().getNamedItem(tag)!= null)
+            return true;
+        return false;
+    }
+
+    public static String getAttribute(Node node, String tag){
+        return node.getAttributes().getNamedItem(tag).getNodeValue();
+    }
+
+    public static Node getElementNode(Element element, String tag){
+        return element.getElementsByTagName(tag).item(0);
+    }
+
+    public static String elementString(Element element, String tag){
+        return getElementNode(element, tag).getTextContent();
     }
 }
