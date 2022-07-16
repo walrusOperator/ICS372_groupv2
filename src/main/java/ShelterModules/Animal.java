@@ -19,7 +19,7 @@ public class Animal {
      * @param animal_weight
      * @param receipt_date
      */
-    public Animal(String animal_type, String animal_name, String animal_id, double animal_weight,String weight_unit, long receipt_date){
+    public Animal(String animal_type, String animal_name, String animal_id, double animal_weight, String weight_unit, long receipt_date){
         this.animal_Type = animal_type;
         this.animal_Name = animal_name;
         this.animal_ID = animal_id;

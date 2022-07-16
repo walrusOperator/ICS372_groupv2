@@ -15,6 +15,9 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class Utilities {
 
@@ -139,5 +142,71 @@ public class Utilities {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void parseIncomingXML(String filename, ShelterList roster){
+        Document doc = readXML(filename);
+        NodeList nodeList = doc.getElementsByTagName("Shelter");
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            //https://stackoverflow.com/questions/4138754/getting-an-attribute-value-in-xml-element
+            Node currNode = nodeList.item(i);
+
+            if(currNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element shelterEle = (Element) currNode;
+                String id = currNode.getAttributes().getNamedItem("id").getNodeValue();
+                String name = shelterEle.getElementsByTagName("Name").item(0).getChildNodes().item(0).getNodeValue();
+                Shelter shelter = new Shelter(id, name);
+                roster.addShelter(id, shelter);
+
+                NodeList animalList = currNode.getChildNodes();
+                for (int j = 0; j < animalList.getLength(); j++) {
+                    Node aniNode = animalList.item(j);
+
+                    if(aniNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element aniEle = (Element) aniNode;
+                        String aniType;
+                        String aniID;
+                        String aniName;
+                        String aniWeightUnit;
+                        double aniWeight;
+                        long aniReceipt;
+
+                        if (aniNode.getAttributes().getNamedItem("type") != null) {
+                            aniType = aniNode.getAttributes().getNamedItem("type").getNodeValue();
+                            aniID = aniNode.getAttributes().getNamedItem("id").getNodeValue();
+                        } else{
+                            aniType = "unlisted";
+                            aniID = "unlisted";
+                        }
+                        if (aniEle.getElementsByTagName("Name").item(0) != null) {
+                            aniName = aniEle.getElementsByTagName("Name").item(0).getTextContent();
+                        } else{
+                            aniName = "unlisted";
+                        }
+                        if (aniNode.getAttributes().getNamedItem("Weight") != null) {
+
+                            aniWeightUnit = ((Element) aniNode).getElementsByTagName("Weight").item(0).getAttributes().getNamedItem("unit").getNodeValue();
+                            aniWeight = Double.parseDouble(aniEle.getElementsByTagName("Weight").item(0).getTextContent());
+                        } else{
+                            aniWeightUnit = "";
+                            aniWeight = 0.0;
+                        }
+                        if (aniEle.getElementsByTagName("ReceiptDate").item(0) != null) {
+                            aniReceipt = Long.parseLong(aniEle.getElementsByTagName("ReceiptDate").item(0).getTextContent());
+                        } else{
+                            aniReceipt = 1111111111;
+                        }
+                        //checks for blank animal entry
+                        if(!(aniType.equals("unlisted") && aniName.equals("unlisted")&& aniID.equals("unlisted") && aniWeight == 0.0 && aniWeightUnit.equals("") && aniReceipt == 1111111111)) {
+                            Animal tempAnimal = new Animal(aniType, aniName, aniID, aniWeight, aniWeightUnit, aniReceipt);
+                            roster.addAnimalToShelter(id, tempAnimal);
+                        }
+                    }
+                }
+            }
+        }
+
+
     }
 }

@@ -81,7 +81,7 @@ public class Main {
                 break;
             case 8:
                 filename = "sample.xml";
-                shelterMap.addIncomingXML(filename);
+                Utilities.parseIncomingXML(filename, shelterMap);
                 break;
         }
     }
