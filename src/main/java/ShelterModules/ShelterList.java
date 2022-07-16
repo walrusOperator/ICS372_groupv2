@@ -187,9 +187,6 @@ public class ShelterList {
 
     public void addAnimalToShelter(String id, Animal animal){
         Shelter tempShelter = mapOfShelters.get(id);
-        List<Animal> tempAnimalList = tempShelter.getAnimalList(); //get current list from shelter object in map
-        tempAnimalList.add(animal); //add new animal to list
-        tempShelter.setAnimalList(tempAnimalList); //set revised animal list into ShelterModules.Shelter Object
-        mapOfShelters.put(id, tempShelter); //replace previous map entry with updated key value pair.
+        tempShelter.addAnimal(animal);
     }
 }
