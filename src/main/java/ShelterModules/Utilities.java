@@ -153,10 +153,13 @@ public class Utilities {
 
             if(currNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element shelterEle = (Element) currNode;
+
                 String id = getAttribute(currNode, "id");
                 String name = elementString(shelterEle, "Name");
+
                 Shelter shelter = new Shelter(id, name);
                 roster.addShelter(id, shelter);
+
                 NodeList animalList = ((Element) currNode).getElementsByTagName("Animal");
                 for (int j = 0; j < animalList.getLength(); j++) {
                     Node aniNode = animalList.item(j);
@@ -194,8 +197,6 @@ public class Utilities {
                 }
             }
         }
-
-
     }
 
     public static boolean validElement(Element element, String tag){

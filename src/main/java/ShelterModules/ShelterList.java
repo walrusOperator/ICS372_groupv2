@@ -54,9 +54,9 @@ public class ShelterList {
         // if type is valid, creates ShelterModules.Animal and add to correct ShelterModules.Shelter. Creates shelter if it doesn't exist
         if (validAnimal(animal_type)) {
             Animal tempAnimal = new Animal(animal_type, animal_name, animal_id, animal_weight, "", receipt_date);
-            if (!(mapOfShelters.containsKey(shelter_id))) {
+            if (!containsShelter(shelter_id)) {
                 Shelter tempShelter = new Shelter(shelter_id);
-                mapOfShelters.put(shelter_id, tempShelter);
+                addShelter(shelter_id, tempShelter);
             }
             addAnimalToShelter(shelter_id, tempAnimal);
         }

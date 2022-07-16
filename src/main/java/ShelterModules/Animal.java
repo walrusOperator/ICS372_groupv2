@@ -111,10 +111,12 @@ public class Animal {
                 System.out.println("Please enter the animal weight: ");
                 double weight = scan.nextDouble();
                 scan.nextLine();
+                System.out.println("Please enter the weight unit: ");
+                String unit = scan.nextLine();
                 System.out.println("Please enter the receipt date: ");
                 long receipt = scan.nextLong();
                 scan.nextLine();
-                return new Animal(type, name, id, weight, "", receipt);
+                return new Animal(type, name, id, weight, unit, receipt);
             }catch (Exception e){
                 System.out.println("Animal could not be created\n");
                 return null;
