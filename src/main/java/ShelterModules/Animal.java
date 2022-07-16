@@ -87,13 +87,11 @@ public class Animal {
      */
     @Override
     public String toString() {
-        return "Animal{" +
-                "animal_ID='" + animal_ID + '\'' +
-                ", animal_Type='" + animal_Type + '\'' +
-                ", animal_Name='" + animal_Name + '\'' +
-                ", animal_weight=" + animal_weight +
-                ", receipt_date=" + receipt_date +
-                '}';
+        return "Animal ID='" + animal_ID + '\'' +
+                ", Animal Type='" + animal_Type + '\'' +
+                ", Animal Name='" + animal_Name + '\'' +
+                ", Animal Weight=" + animal_weight + " " + weight_unit +
+                ", Receipt Date=" + receipt_date;
     }
 
     /**

@@ -33,9 +33,11 @@ public class Main {
                 shelterMap.showShelters();
                 selected = UserInterface.shelterSelection();
                 if(ShelterList.shelterSearch(selected, shelterMap)) {
-                    Animal newAnimal = Animal.createNewAnimal(shelterMap);
-                    if(newAnimal != null) {
-                        Shelter.addUserCreatedAnimal(newAnimal, selected, shelterMap);
+                    if (shelterMap.getShelter(selected).isReceiving()) {
+                        Animal newAnimal = Animal.createNewAnimal(shelterMap);
+                        if (newAnimal != null) {
+                            Shelter.addUserCreatedAnimal(newAnimal, selected, shelterMap);
+                        }
                     }
                 }
                 break;

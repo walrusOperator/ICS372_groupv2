@@ -48,7 +48,9 @@ public class Shelter {
         returns a string of all animals in the list for specific shelter
          */
     public String showAnimals(){
-        String str = "Shelter: " + shelterID + "\n";
+        String str = "Shelter ID: " + shelterID + "\n";
+         str += "Shelter Name: " + shelterName + "\n";
+         str += "Shelter Receiving: " + receiving + "\n";
 
         for (int i = 0; i < size(); i++) {
             str += animalList.get(i).toString();
