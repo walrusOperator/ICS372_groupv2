@@ -158,8 +158,7 @@ public class Utilities {
                 String name = shelterEle.getElementsByTagName("Name").item(0).getChildNodes().item(0).getNodeValue();
                 Shelter shelter = new Shelter(id, name);
                 roster.addShelter(id, shelter);
-
-                NodeList animalList = currNode.getChildNodes();
+                NodeList animalList = ((Element) currNode).getElementsByTagName("Animal");
                 for (int j = 0; j < animalList.getLength(); j++) {
                     Node aniNode = animalList.item(j);
 
@@ -197,11 +196,10 @@ public class Utilities {
                         } else{
                             aniReceipt = 1111111111;
                         }
-                        //checks for blank animal entry
-                        if(!(aniType.equals("unlisted") && aniName.equals("unlisted")&& aniID.equals("unlisted") && aniWeight == 0.0 && aniWeightUnit.equals("") && aniReceipt == 1111111111)) {
-                            Animal tempAnimal = new Animal(aniType, aniName, aniID, aniWeight, aniWeightUnit, aniReceipt);
-                            roster.addAnimalToShelter(id, tempAnimal);
-                        }
+
+                        Animal tempAnimal = new Animal(aniType, aniName, aniID, aniWeight, aniWeightUnit, aniReceipt);
+                        roster.addAnimalToShelter(id, tempAnimal);
+
                     }
                 }
             }
