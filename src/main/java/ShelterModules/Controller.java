@@ -48,6 +48,7 @@ public class Controller {
     private static final ShelterList shelterMap = new ShelterList();
 
     public void importing(ActionEvent e){
+        System.out.println("importing");
         String filename = "Project1_input.json";
         shelterMap.addIncomingJSON(filename);
     }
@@ -59,33 +60,30 @@ public class Controller {
         stage.show();
 
     }
-    public void enable(ActionEvent e){
+    public void enable(ActionEvent e) throws IOException {
         System.out.println("Enable receiving");
-        Group root = new Group();
+        Parent root = FXMLLoader.load(getClass().getResource("shelterList.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        Stage stage = new Stage();
-
-        Text text = new Text();
-        for(Shelter shelter : shelterMap.getShelters()){
-            text.setText(shelter.getShelterID());
-        }
-        root.getChildren().add(text);
         stage.setScene(scene);
         stage.show();
-/*        shelterMap.showShelters();
-        selected = UserInterface.shelterSelection();
-        if(ShelterList.shelterSearch(selected, shelterMap)) {
-            shelterMap.getShelter(selected).changeReceiving(true);
-        }
-*/
-
-
+        shelterMap.getShelter(selected).changeReceiving(true);
     }
-    public void disable(ActionEvent e){
+    public void disable(ActionEvent e) throws IOException {
         System.out.println("Disable receiving");
+        Parent root = FXMLLoader.load(getClass().getResource("shelterList.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        shelterMap.getShelter(selected).changeReceiving(false);
     }
-    public void seeAnimal(ActionEvent e){
-        System.out.println("Seeing animal from a shelter");
+    public void seeAnimal(ActionEvent e) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("animal-in-shelter.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     public void seeAnimalAllShelters(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("animals-and-shelters.fxml"));
@@ -97,6 +95,8 @@ public class Controller {
     }
     public void export(ActionEvent e){
         System.out.println("Exporting");
+        String filename = "ProjectOutput.json";
+        Utilities.writeJSON(shelterMap, filename);
     }
     public void exit(ActionEvent e){
         stage = (Stage) scenePane.getScene().getWindow();

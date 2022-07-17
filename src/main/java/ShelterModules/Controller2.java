@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Controller2 implements Initializable {
@@ -28,11 +29,11 @@ public class Controller2 implements Initializable {
     @FXML
     private Label shelterLabel;
     @FXML
-    private ChoiceBox shelterChoiceBox;
+    private ChoiceBox<String> shelterChoiceBox;
     @FXML
     private Label typeLabel;
     @FXML
-    private ChoiceBox typeChoiceBox;
+    private ChoiceBox<String> typeChoiceBox;
     @FXML
     private Label nameLabel;
     @FXML
@@ -51,15 +52,11 @@ public class Controller2 implements Initializable {
     private TextField receiptTextField;
     @FXML
     private Button enterButton;
-    private String[] animalType = {"Dog", "Cat", "Bird", "Rabbit"};
-    private String[] shelterList = {String.valueOf(shelterMap.getShelters())};
-    private String shelter;
-    private String animal_ID;
-    private String animal_Type;
-    private String animal_Name;
-    private double animal_weight;
+    @FXML
+    private Button exitButton;
+    private final String[] animalType = {"Dog", "Cat", "Bird", "Rabbit"};
+    private final String[] shelterList = {String.valueOf(shelterMap.getShelters())};
     private String animal_unit;
-    private long receipt_date;
 
     public void initialize(URL arg0, ResourceBundle arg1){
         typeChoiceBox.getItems().addAll(animalType);
@@ -67,26 +64,25 @@ public class Controller2 implements Initializable {
     }
 
     public void enter(ActionEvent e) throws IOException {
-        shelter = shelterChoiceBox.getId();
-        animal_Type = typeChoiceBox.getId();
-        animal_ID = idTextField.getText();
-        animal_Name = nameTextField.getText();
-        animal_weight = Double.parseDouble(weightTextField.getText());
-        receipt_date = Long.parseLong(receiptTextField.getText());
+        String shelter = shelterChoiceBox.getId();
+        String animal_Type = typeChoiceBox.getId();
+        String animal_ID = idTextField.getText();
+        String animal_Name = nameTextField.getText();
+        double animal_weight = Double.parseDouble(weightTextField.getText());
+        long receipt_date = Long.parseLong(receiptTextField.getText());
 
-        Animal newAnimal = new Animal(animal_Type,animal_ID, animal_Name, animal_weight, animal_unit, receipt_date);
-        if (newAnimal != null) {
-            Shelter.addUserCreatedAnimal(newAnimal, shelter, shelterMap);
-        }
+        Animal newAnimal = new Animal(animal_Type, animal_ID, animal_Name, animal_weight, animal_unit, receipt_date);
+        Shelter.addUserCreatedAnimal(newAnimal, shelter, shelterMap);
 
-        Parent root = FXMLLoader.load(getClass().getResource("gui-user-menu.fxml"));
+    }
+
+    public void exit(ActionEvent e) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
-
 
 
 

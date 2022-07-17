@@ -44,12 +44,13 @@
          </font>
       </Label>
       <ChoiceBox fx:id="typeChoiceBox" layoutX="106.0" layoutY="125.0" prefHeight="26.0" prefWidth="160.0" />
-      <Button fx:id="enterButton" layoutX="522.0" layoutY="361.0" mnemonicParsing="false" onAction="#enter" text="Enter" />
+      <Button fx:id="enterButton" layoutX="277.0" layoutY="361.0" mnemonicParsing="false" onAction="#enter" text="Enter" />
       <Label fx:id="shelterLabel" layoutX="53.0" layoutY="84.0" prefHeight="17.0" prefWidth="49.0" text="Shelter:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <ChoiceBox fx:id="shelterChoiceBox" layoutX="106.0" layoutY="81.0" prefHeight="26.0" prefWidth="160.0" />
+      <Button fx:id="exitButton" layoutX="531.0" layoutY="13.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
    </children>
 </AnchorPane>

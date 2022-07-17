@@ -1,34 +1,22 @@
 package ShelterModules;
 
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
-public class Controller3 {
+public class Controller4 {
     @FXML
-    private TableView<Shelter> displayTable;
-    @FXML
-    private TableColumn<Shelter, String> shelterIDColumn;
-    @FXML
-    private TableColumn<Shelter, String> shelterNameColumn;
-    @FXML
-    private TableColumn<Shelter, String> receivingStatusColumn;
+    private TableView<Animal> table;
     @FXML
     private TableColumn<Animal, String> animalIDColumn;
     @FXML
@@ -39,6 +27,8 @@ public class Controller3 {
     private TableColumn<Animal, String> animalWeightColumn;
     @FXML
     private TableColumn<Animal, String> receiveDateColumn;
+    @FXML
+    private Button exitButton;
 
     public void exit(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));
@@ -47,4 +37,5 @@ public class Controller3 {
         stage.setScene(scene);
         stage.show();
     }
+
 }
