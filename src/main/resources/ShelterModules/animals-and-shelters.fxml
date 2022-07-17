@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="552.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ShelterModules.Controller3">
+   <children>
+      <TableView fx:id="displayTable" layoutX="91.0" layoutY="39.0" prefHeight="474.0" prefWidth="713.0">
+        <columns>
+          <TableColumn fx:id="shelterIDColumn" prefWidth="75.0" text="Shelter ID" />
+          <TableColumn fx:id="shelterNameColumn" prefWidth="92.0" text="Shelter Name" />
+            <TableColumn fx:id="receivingStatusColumn" prefWidth="107.0" text="Receiving Status" />
+            <TableColumn fx:id="animalIDColumn" prefWidth="76.0" text="Animal ID" />
+            <TableColumn fx:id="animalTypeColumn" text="Animal Type" />
+            <TableColumn fx:id="animalNameColumn" prefWidth="90.0" text="Animal Name" />
+            <TableColumn fx:id="animalWeightColumn" prefWidth="98.0" text="Animal Weight" />
+            <TableColumn fx:id="receiveDateColumn" prefWidth="96.0" text="Receive Date" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

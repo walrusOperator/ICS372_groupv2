@@ -16,7 +16,7 @@
       <Button fx:id="exitButton" layoutX="20.0" layoutY="639.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
       <Separator layoutX="20.0" layoutY="49.0" prefHeight="0.0" prefWidth="514.0" />
       <Button fx:id="importButton" layoutX="20.0" layoutY="51.0" mnemonicParsing="false" onAction="#importing" text="Import JSON of Animals" />
-      <Button fx:id="addIncomingButton" layoutX="20.0" layoutY="99.0" mnemonicParsing="false" onAction="#addingIncoming" text="Add Additional Incoming Animal" />
+      <Button fx:id="addIncomingButton" layoutX="20.0" layoutY="99.0" mnemonicParsing="false" onAction="#userInputAddingAnimal" text="Add Additional Incoming Animal" />
       <Button fx:id="enableButton" layoutX="20.0" layoutY="148.0" mnemonicParsing="false" onAction="#enable" text="Enable Receiving" />
       <Button fx:id="disableButton" layoutX="20.0" layoutY="197.0" mnemonicParsing="false" onAction="#disable" text="Disable Receiving" />
       <Button fx:id="seeAnimalButton" layoutX="20.0" layoutY="245.0" mnemonicParsing="false" onAction="#seeAnimal" text="See Animals in a Shelter" />
