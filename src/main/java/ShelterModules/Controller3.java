@@ -18,7 +18,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -26,12 +25,9 @@ import java.util.ResourceBundle;
 import static ShelterModules.Controller.shelterMap;
 
 public class Controller3 implements Initializable {
-    @FXML
-    private Label label5;
+
     @FXML
     private ChoiceBox<Shelter> shelterChoiceBox;
-    @FXML
-    private Button enterButton;
 
     private final Shelter[] shelterList = shelterMap.getShelters().toArray(new Shelter[0]);
 
@@ -41,13 +37,6 @@ public class Controller3 implements Initializable {
 
     private final TableView<Animal> table = new TableView<>();
     ObservableList<Animal> animalData = FXCollections.observableArrayList();
-
-    String animal_type = null;
-    String animal_name = null;
-    String animal_id = null;
-    double animal_weight = 0;
-    String weight_unit = null;
-    long receipt_date = 0;
 
     public void enter(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));
@@ -68,7 +57,6 @@ public class Controller3 implements Initializable {
         for (Animal animal : shelterChoiceBox.getValue().getAnimalList()) {
             animalData.add(animal);
             table.setItems(animalData);
-            System.out.println(animalData);
         }
 
         TableColumn<Animal, String> animalType = new TableColumn<>("Animal Type");
