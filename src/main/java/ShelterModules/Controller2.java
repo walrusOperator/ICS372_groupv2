@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -79,9 +80,9 @@ public class Controller2 implements Initializable {
         if (shelterChoiceBox.getValue().isReceiving()) {
             Animal newAnimal = new Animal(animal_Type,animal_Name,animal_ID,animal_weight,weight_unit,receipt_date);
             Shelter.addUserCreatedAnimal(newAnimal, shelter.getShelterID(), shelterMap);
-            System.out.println(newAnimal);
-            System.out.println(shelter);
         }
+
+        FileUtilities.writeJSON(shelterMap, "Save_Data.json");
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
