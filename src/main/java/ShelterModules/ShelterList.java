@@ -21,18 +21,6 @@ public class ShelterList {
     }
 
     /**
-     * Reads in specified JSON file to fill out the ShelterModules.ShelterList
-     */
-
-
-    /**
-     * Takes a JSONObject and converts it into an ShelterModules.Animal, then adds it
-     * mapOfShelters.
-     * @param animal - (JSONObject) converted into an ShelterModules.Animal Object.
-     */
-
-
-    /**
      * Prints out the values of mapOfShelters directly to the console
      */
     public void showShelters(){

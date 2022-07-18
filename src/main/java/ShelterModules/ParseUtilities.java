@@ -8,6 +8,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class ParseUtilities {
+    /**
+     * Reads in specified JSON file to fill out the ShelterList
+     */
     public static void addIncomingJSON(String filename, ShelterList shelters) {
         JSONArray j = FileUtilities.readJSON(filename);
 //      https://howtodoinjava.com/java/library/json-simple-read-write-json-examples/
@@ -15,6 +18,11 @@ public class ParseUtilities {
         j.forEach(animal -> parseAnimalObject( (JSONObject) animal, shelters));
     }
 
+    /**
+     * Takes a JSONObject and converts it into an ShelterModules.Animal, then adds it
+     * mapOfShelters.
+     * @param animal - (JSONObject) converted into an ShelterModules.Animal Object.
+     */
     private static void parseAnimalObject(JSONObject animal, ShelterList shelters) {
         String shelter_id = (String) animal.get("shelter_id");
         String animal_type = (String) animal.get("animal_type");
@@ -42,6 +50,11 @@ public class ParseUtilities {
         }
     }
 
+    /**
+     * Parses file retrieved via readXML and adds the data to roster
+     * @param filename - name of file to import in readXML
+     * @param roster - ShelterList XML data is added to
+     */
     public static void parseIncomingXML(String filename, ShelterList roster){
         Document doc = FileUtilities.readXML(filename);
         NodeList nodeList = doc.getElementsByTagName("Shelter");

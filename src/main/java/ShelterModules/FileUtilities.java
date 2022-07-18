@@ -37,6 +37,11 @@ public class FileUtilities {
         return null;
     }
 
+    /**
+     * Loads saved file data into a HashMap
+     * @param filename - (String)
+     * @return (HashMap) - creates a new map to be merged into existing roster
+     */
     public static HashMap loadJSON(String filename) {
         JSONArray shelters = readJSON(filename);
         HashMap<String, Shelter> shelterRoster = new HashMap<>();
@@ -86,7 +91,7 @@ public class FileUtilities {
     /**
      * Method used to create a JSON output file of the given shelterList
      *
-     * @param roster - (ShelterModules.ShelterList) shelterList used to create the JSON output file
+     * @param roster - (ShelterList) shelterList used to create the JSON output file
      */
     public static void writeJSON(ShelterList roster, String filename) {
         JSONArray sheltersToWrite = new JSONArray();
@@ -129,6 +134,11 @@ public class FileUtilities {
         }
     }
 
+    /**
+     *
+     * @param filename - name of the XML file to read in
+     * @return (Document) - converted file to be parsed
+     */
     public static Document readXML(String filename) {
         //https://initialcommit.com/blog/how-to-read-xml-file-in-java
         try {
