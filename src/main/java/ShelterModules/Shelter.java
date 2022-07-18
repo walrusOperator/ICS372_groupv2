@@ -97,7 +97,9 @@ public class Shelter {
     }
 
     public void addAnimal(Animal animal){
-        animalList.add(animal);
+        if(receiving){
+            animalList.add(animal);
+        }
     }
 }
 
