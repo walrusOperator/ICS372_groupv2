@@ -54,7 +54,7 @@ public class Controller {
     public void importing(ActionEvent e){
         System.out.println("importing");
         String filename = "Project1_input.json";
-        shelterMap.addIncomingJSON(filename);
+        ParseUtilities.addIncomingJSON(filename, shelterMap);
     }
     public void userInputAddingAnimal(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-input-adding-animal.fxml")));
@@ -96,7 +96,7 @@ public class Controller {
     public void export(ActionEvent e){
         System.out.println("Exporting");
         String filename = "ProjectOutput.json";
-        Utilities.writeJSON(shelterMap, filename);
+        FileUtilities.writeJSON(shelterMap, filename);
     }
     public void exit(ActionEvent e){
         stage = (Stage) scenePane.getScene().getWindow();

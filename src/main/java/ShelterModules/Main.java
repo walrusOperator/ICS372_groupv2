@@ -7,12 +7,12 @@ public class Main {
     private static final ShelterList shelterMap = new ShelterList();
     @SuppressWarnings("InfiniteLoopStatement")
     public static void main(String[] args) {
-        shelterMap.addHashMap(Utilities.loadJSON("Save_Data.json"));
+        shelterMap.addHashMap(FileUtilities.loadJSON("Save_Data.json"));
         do {
             UserInterface.printMenu();
             int userSelection = UserInterface.userOption();
             userMenu(userSelection, shelterMap);
-            Utilities.writeJSON(shelterMap, "Save_Data.json");
+            FileUtilities.writeJSON(shelterMap, "Save_Data.json");
         }while(true);
     }
 
@@ -25,7 +25,7 @@ public class Main {
             //call to add all shelters and animals from JSON file
             case 1:
                 filename = "Project1_input.json";
-                shelterMap.addIncomingJSON(filename);
+                ParseUtilities.addIncomingJSON(filename, shelterMap);
                 break;
 
             //validate shelter ID, if shelter exists create ShelterModules.Animal object and add to existing ShelterModules.Shelter object
@@ -77,11 +77,11 @@ public class Main {
             //call ShelterModules.Utilities method to create a JSON file of the shelterMap hashmap
             case 7:
                 filename = "ProjectOutput.json";
-                Utilities.writeJSON(shelterMap, filename);
+                FileUtilities.writeJSON(shelterMap, filename);
                 break;
             case 8:
                 filename = "sample.xml";
-                Utilities.parseIncomingXML(filename, shelterMap);
+                ParseUtilities.parseIncomingXML(filename, shelterMap);
                 break;
         }
     }
