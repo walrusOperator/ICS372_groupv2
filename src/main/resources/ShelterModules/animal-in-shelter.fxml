@@ -5,9 +5,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="556.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ShelterModules.Controller4">
+<AnchorPane prefHeight="553.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ShelterModules.Controller4">
    <children>
-      <TableView layoutX="55.0" layoutY="59.0" prefHeight="431.0" prefWidth="667.0">
+      <TableView layoutX="54.0" layoutY="45.0" prefHeight="431.0" prefWidth="485.0">
         <columns>
           <TableColumn fx:id="animalIDColumn" prefWidth="75.0" text="Animal ID" />
           <TableColumn fx:id="animalTypeColumn" prefWidth="98.0" text="Animal Type" />
@@ -16,6 +16,6 @@
             <TableColumn fx:id="receiveDateColumn" prefWidth="114.0" text="Receive Date" />
         </columns>
       </TableView>
-      <Button fx:id="exitButton" layoutX="667.0" layoutY="506.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
+      <Button fx:id="exitButton" layoutX="502.0" layoutY="500.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
    </children>
 </AnchorPane>

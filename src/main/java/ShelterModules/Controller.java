@@ -1,5 +1,8 @@
 package ShelterModules;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +49,7 @@ public class Controller {
 
     Stage stage;
     String selected;
-    private static final ShelterList shelterMap = new ShelterList();
+    static final ShelterList shelterMap = new ShelterList();
 
     public void importing(ActionEvent e){
         System.out.println("importing");
@@ -59,7 +62,6 @@ public class Controller {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
     public void enable(ActionEvent e) throws IOException {
         System.out.println("Enable receiving");
@@ -68,16 +70,14 @@ public class Controller {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        shelterMap.getShelter(selected).changeReceiving(true);
     }
     public void disable(ActionEvent e) throws IOException {
         System.out.println("Disable receiving");
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("shelterList.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("selectShelterList2.fxml")));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        shelterMap.getShelter(selected).changeReceiving(false);
     }
     public void seeAnimal(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("animal-in-shelter.fxml")));

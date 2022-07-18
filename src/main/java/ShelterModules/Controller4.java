@@ -1,5 +1,7 @@
 package ShelterModules;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+import static ShelterModules.Controller.shelterMap;
 
 public class Controller4 {
     @FXML
@@ -29,6 +32,11 @@ public class Controller4 {
     private TableColumn<Animal, String> receiveDateColumn;
     @FXML
     private Button exitButton;
+
+    public ObservableList<Animal> getAnimal(){
+        ObservableList<Animal> animals = FXCollections.observableArrayList();
+        animals.add(shelterMap.);
+    }
 
     public void exit(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));

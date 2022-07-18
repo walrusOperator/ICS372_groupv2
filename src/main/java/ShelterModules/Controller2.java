@@ -19,9 +19,9 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class Controller2 implements Initializable {
+import static ShelterModules.Controller.shelterMap;
 
-    private static final ShelterList shelterMap = new ShelterList();
+public class Controller2 implements Initializable {
     @FXML
     private AnchorPane scene2;
     @FXML
@@ -29,7 +29,7 @@ public class Controller2 implements Initializable {
     @FXML
     private Label shelterLabel;
     @FXML
-    private ChoiceBox<String> shelterChoiceBox;
+    private ChoiceBox<Shelter> shelterChoiceBox;
     @FXML
     private Label typeLabel;
     @FXML
@@ -47,6 +47,10 @@ public class Controller2 implements Initializable {
     @FXML
     private TextField weightTextField;
     @FXML
+    private Label weightUnitLabel;
+    @FXML
+    private TextField weightUnitTextField;
+    @FXML
     private Label receiptLabel;
     @FXML
     private TextField receiptTextField;
@@ -55,25 +59,23 @@ public class Controller2 implements Initializable {
     @FXML
     private Button exitButton;
     private final String[] animalType = {"Dog", "Cat", "Bird", "Rabbit"};
-    private final String[] shelterList = {String.valueOf(shelterMap.getShelters())};
-    private String animal_unit;
+    private final Shelter[] shelterList = shelterMap.getShelters().toArray(new Shelter[0]);
 
     public void initialize(URL arg0, ResourceBundle arg1){
-        typeChoiceBox.getItems().addAll(animalType);
         shelterChoiceBox.getItems().addAll(shelterList);
+        typeChoiceBox.getItems().addAll(animalType);
     }
-
-    public void enter(ActionEvent e) throws IOException {
-        String shelter = shelterChoiceBox.getId();
-        String animal_Type = typeChoiceBox.getId();
+    public void enter(ActionEvent e){
         String animal_ID = idTextField.getText();
         String animal_Name = nameTextField.getText();
         double animal_weight = Double.parseDouble(weightTextField.getText());
+        String animal_unit = weightUnitTextField.getText();
         long receipt_date = Long.parseLong(receiptTextField.getText());
 
-        Animal newAnimal = new Animal(animal_Type, animal_ID, animal_Name, animal_weight, animal_unit, receipt_date);
-        Shelter.addUserCreatedAnimal(newAnimal, shelter, shelterMap);
-
+        if (shelterChoiceBox.getValue().isReceiving()) {
+            Animal newAnimal = new Animal(typeChoiceBox.getValue(),animal_Name,animal_ID,animal_weight,animal_unit,receipt_date);
+            Shelter.addUserCreatedAnimal(newAnimal, String.valueOf(shelterChoiceBox.getValue()), shelterMap);
+        }
     }
 
     public void exit(ActionEvent e) throws IOException {
