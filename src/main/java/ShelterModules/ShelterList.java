@@ -1,13 +1,6 @@
 package ShelterModules;
 
-import org.json.simple.*;
-import org.json.simple.JSONObject;
-
 import java.util.*;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 public class ShelterList {
     Map<String, Shelter> mapOfShelters = new HashMap<>();
@@ -18,48 +11,6 @@ public class ShelterList {
 
     public void addShelter(String id, Shelter shelter){
         mapOfShelters.put(id, shelter);
-    }
-
-    /**
-     * Reads in specified JSON file to fill out the ShelterModules.ShelterList
-     */
-    public void addIncomingJSON(String filename) {
-        JSONArray j = Utilities.readJSON(filename);
-//      https://howtodoinjava.com/java/library/json-simple-read-write-json-examples/
-        assert j != null;
-        j.forEach(animal -> parseAnimalObject( (JSONObject) animal));
-    }
-
-    /**
-     * Takes a JSONObject and converts it into an ShelterModules.Animal, then adds it
-     * mapOfShelters.
-     * @param animal - (JSONObject) converted into an ShelterModules.Animal Object.
-     */
-    private void parseAnimalObject(JSONObject animal) {
-        String shelter_id = (String) animal.get("shelter_id");
-        String animal_type = (String) animal.get("animal_type");
-        String animal_name = (String) animal.get("animal_name");
-        String animal_id = (String) animal.get("animal_id");
-        Object temp = animal.get("weight");
-        double animal_weight;
-
-        // checks incoming weight value and converts value to double
-        if(temp instanceof Double){
-            animal_weight = (Double) temp;
-        } else {
-            animal_weight = ((Long) temp).doubleValue();
-        }
-        long receipt_date = (long) animal.get("receipt_date");
-
-        // if type is valid, creates ShelterModules.Animal and add to correct ShelterModules.Shelter. Creates shelter if it doesn't exist
-        if (validAnimal(animal_type)) {
-            Animal tempAnimal = new Animal(animal_type, animal_name, animal_id, animal_weight, "", receipt_date);
-            if (!containsShelter(shelter_id)) {
-                Shelter tempShelter = new Shelter(shelter_id);
-                addShelter(shelter_id, tempShelter);
-            }
-            addAnimalToShelter(shelter_id, tempAnimal);
-        }
     }
 
     /**
@@ -81,7 +32,7 @@ public class ShelterList {
     /**
      * Returns a ShelterModules.Shelter that corresponds to the
      * @param id - (String) user given id
-     * @return (ShelterModules.Shelter) - ShelterModules.Shelter based on corresponding id.
+     * @return (Shelter) - Shelter based on corresponding id.
      */
     public Shelter getShelter(String id){
         return mapOfShelters.get(id);
