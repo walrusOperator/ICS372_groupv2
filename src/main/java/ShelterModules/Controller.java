@@ -58,19 +58,21 @@ public class Controller implements Initializable {
     Stage stage;
     String selected;
     static final ShelterList shelterMap = new ShelterList();
+    private final String saveName = "Save_Data.json";
     private final TableView<Animal> table = new TableView<>();
     static ObservableList<Shelter> shelterData = FXCollections.observableArrayList();
     static ObservableList<Animal> animalData = FXCollections.observableArrayList();
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         shelterMap.addHashMap(FileUtilities.loadJSON("Save_Data.json"));
-        System.out.println("Importing JSON file...");
+        System.out.println("Importing Save Data...");
     }
 
     public void importing(ActionEvent e){
         String filename = "Project1_input.json";
         ParseUtilities.addIncomingJSON(filename, shelterMap);
         System.out.println("Importing JSON file...");
+        FileUtilities.writeJSON(shelterMap, saveName);
     }
     public void userInputAddingAnimal(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-input-adding-animal.fxml")));
@@ -78,6 +80,7 @@ public class Controller implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        //FileUtilities.writeJSON(shelterMap, saveName);
     }
     public void enable(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("shelterList.fxml")));
@@ -86,6 +89,7 @@ public class Controller implements Initializable {
         stage.setScene(scene);
         stage.show();
         System.out.println("Enable receiving...");
+        FileUtilities.writeJSON(shelterMap, saveName);
     }
     public void disable(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("selectShelterList2.fxml")));
@@ -94,6 +98,7 @@ public class Controller implements Initializable {
         stage.setScene(scene);
         stage.show();
         System.out.println("Disable receiving...");
+        FileUtilities.writeJSON(shelterMap, saveName);
     }
     public void seeAnimal(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("selectShelterList3.fxml")));
@@ -171,10 +176,12 @@ public class Controller implements Initializable {
         String filename = "sample.xml";
         ParseUtilities.parseIncomingXML(filename, shelterMap);
         System.out.println("Importing XML file...");
+        FileUtilities.writeJSON(shelterMap, saveName);
     }
     public void exit(ActionEvent e){
         stage = (Stage) scenePane.getScene().getWindow();
         System.out.println("Exiting");
+        FileUtilities.writeJSON(shelterMap, saveName);
         stage.close();
     }
 
