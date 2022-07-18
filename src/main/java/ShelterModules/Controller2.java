@@ -68,7 +68,7 @@ public class Controller2 implements Initializable {
         typeChoiceBox.getItems().addAll(animalType);
     }
     public void enter(ActionEvent e) throws IOException {
-        String shelter = String.valueOf(shelterChoiceBox.getSelectionModel().selectedItemProperty().getValue());
+        Shelter shelter = shelterChoiceBox.getSelectionModel().selectedItemProperty().getValue();
         String animal_Type = String.valueOf(typeChoiceBox.getSelectionModel().selectedItemProperty().getValue());
         String animal_ID = idTextField.getText();
         String animal_Name = nameTextField.getText();
@@ -78,10 +78,9 @@ public class Controller2 implements Initializable {
 
         if (shelterChoiceBox.getValue().isReceiving()) {
             Animal newAnimal = new Animal(animal_Type,animal_Name,animal_ID,animal_weight,weight_unit,receipt_date);
-            if(newAnimal != null){
-                Shelter.addUserCreatedAnimal(newAnimal, shelter, shelterMap);
-                System.out.println(newAnimal);
-            }
+            Shelter.addUserCreatedAnimal(newAnimal, shelter.getShelterID(), shelterMap);
+            System.out.println(newAnimal);
+            System.out.println(shelter);
         }
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));
