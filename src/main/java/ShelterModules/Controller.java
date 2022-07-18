@@ -59,6 +59,7 @@ public class Controller implements Initializable {
     String selected;
     static final ShelterList shelterMap = new ShelterList();
     private final TableView<Animal> table = new TableView<>();
+    private final TableView<Shelter> shelterTable = new TableView<>();
     static ObservableList<Shelter> shelterData = FXCollections.observableArrayList();
     static ObservableList<Animal> animalData = FXCollections.observableArrayList();
 
@@ -118,6 +119,8 @@ public class Controller implements Initializable {
                 table.setItems(animalData);
 //                System.out.println(animalData);
             }
+
+            shelterTable.setItems(shelterData);
         }
 
         TableColumn<Shelter, String> shelterID = new TableColumn<>("Shelter ID");
@@ -145,7 +148,7 @@ public class Controller implements Initializable {
         receiptDate.setPrefWidth(105);
         receiptDate.setCellValueFactory(new PropertyValueFactory<>("receipt_date"));
 
-        
+        shelterTable.getColumns().addAll(shelterID, shelterName);
         table.getColumns().addAll(animalType, animalName, animalID, animalWeight, weightUnit, receiptDate);
         table.setPrefWidth(800);
         table.setPrefHeight(900);
@@ -154,13 +157,14 @@ public class Controller implements Initializable {
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(table);
+        vbox.getChildren().addAll(shelterTable,table);
 
         ((Group) scene.getRoot()).getChildren().addAll(vbox);
 
         stage.setScene(scene);
         stage.show();
 
+        stage.setOnCloseRequest(event -> shelterTable.getItems().clear());
         stage.setOnCloseRequest(event -> table.getItems().clear());
     }
     public void export(ActionEvent e){
