@@ -120,7 +120,7 @@ public class Controller {
                 ObservableList<Animal> animalData = FXCollections.observableArrayList(
                         new Animal(animal_type, animal_name, animal_id, animal_weight, weight_unit, receipt_date)
                 );
-                table.setItems(shelterData);
+//                table.setItems(shelterData);
                 table.setItems(animalData);
                 System.out.println(animalData);
             }
@@ -152,7 +152,7 @@ public class Controller {
         receiptDate.setCellValueFactory(new PropertyValueFactory<>("receipt_date"));
 
 
-        table.getColumns().addAll(shelterID, shelterName, animalType, animalName, animalID, animalWeight, weightUnit, receiptDate);
+        table.getColumns().addAll(animalType, animalName, animalID, animalWeight, weightUnit, receiptDate);
         table.setPrefWidth(800);
         table.setPrefHeight(900);
         table.setEditable(true);
