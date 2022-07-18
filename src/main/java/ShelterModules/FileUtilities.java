@@ -39,7 +39,7 @@ public class FileUtilities {
      * @param filename - (String)
      * @return (HashMap) - creates a new map to be merged into existing roster
      */
-    public static HashMap loadJSON(String filename) {
+    public static HashMap<String, Shelter> loadJSON(String filename) {
         JSONArray shelters = readJSON(filename);
         HashMap<String, Shelter> shelterRoster = new HashMap<>();
 
@@ -47,17 +47,17 @@ public class FileUtilities {
             return new HashMap<>();
         }
         try {
-            for (Object tempshelter : shelters.toArray()) {
-                JSONObject shelter = (JSONObject) tempshelter;
+            for (Object tempShelter : shelters.toArray()) {
+                JSONObject shelter = (JSONObject) tempShelter;
                 String id = (String) shelter.get("shelter_id");
                 String name = (String) shelter.get("shelter_name");
                 boolean receiving = (Boolean) shelter.get("shelter_receiving");
 
                 Shelter currShelter = new Shelter(id, name);
 
-                JSONArray animallist = (JSONArray) shelter.get("animals");
-                for (Object tempanimal : animallist) {
-                    JSONObject animal = (JSONObject) tempanimal;
+                JSONArray animalList = (JSONArray) shelter.get("animals");
+                for (Object tempAnimal : animalList) {
+                    JSONObject animal = (JSONObject) tempAnimal;
                     String aniType = (String) animal.get("animal_type");
                     String aniName = (String) animal.get("animal_name");
                     String aniID = (String) animal.get("animal_id");

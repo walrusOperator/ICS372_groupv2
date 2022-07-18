@@ -28,8 +28,8 @@ public class Shelter {
         return animalList;
     }
 
-    public void setAnimalList(List<Animal> newlist) {
-        animalList = newlist;
+    public void setAnimalList(List<Animal> newList) {
+        animalList = newList;
     }
 
     public String toString(){
