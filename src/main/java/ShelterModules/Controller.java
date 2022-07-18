@@ -160,6 +160,8 @@ public class Controller implements Initializable {
 
         stage.setScene(scene);
         stage.show();
+
+        stage.setOnCloseRequest(event -> table.getItems().clear());
     }
     public void export(ActionEvent e){
         String filename = "ProjectOutput.json";
