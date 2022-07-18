@@ -20,7 +20,7 @@ public class ShelterTest {
     }
 
     @org.junit.Test
-    public void addAnimalRecevingTest(){
+    public void addAnimalReceivingTest(){
         Shelter shelter = new Shelter("12345");
         Animal testAnimal = new Animal(
                 "bird", "test", "12345",
