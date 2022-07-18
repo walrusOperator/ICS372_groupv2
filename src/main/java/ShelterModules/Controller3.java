@@ -40,6 +40,7 @@ public class Controller3 implements Initializable {
     }
 
     private final TableView<Animal> table = new TableView<>();
+    ObservableList<Animal> animalData = FXCollections.observableArrayList();
 
     String animal_type = null;
     String animal_name = null;
@@ -65,17 +66,7 @@ public class Controller3 implements Initializable {
         label.setFont(new Font("Arial", 20));
 
         for (Animal animal : shelterChoiceBox.getValue().getAnimalList()) {
-            animal_type = animal.getAnimal_Type();
-            animal_name = animal.getAnimal_Name();
-            animal_id = animal.getAnimal_ID();
-            animal_weight = animal.getAnimal_weight();
-            weight_unit = animal.getWeight_unit();
-            receipt_date = animal.getReceipt_date();
-
-            System.out.println(animal_type + " " + animal_name + " " + animal_id + " " + animal_weight + " " + weight_unit + " " + receipt_date);
-            ObservableList<Animal> animalData = FXCollections.observableArrayList(
-                    new Animal(animal_type, animal_name, animal_id, animal_weight, weight_unit, receipt_date)
-            );
+            animalData.add(animal);
             table.setItems(animalData);
             System.out.println(animalData);
         }

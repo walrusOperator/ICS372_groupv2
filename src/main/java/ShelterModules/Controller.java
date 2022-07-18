@@ -102,27 +102,13 @@ public class Controller {
         stage.setHeight(1000);
 
         for (Shelter shelter : shelterMap.getShelters()) {
-            String shelter_id = shelter.getShelterID();
-            String shelter_name = shelter.getShelterName();
+            shelterData.add(shelter);
+            String shelterID = shelter.getShelterID();
 
             for(Animal animal : shelter.getAnimalList()){
-                String animal_type = animal.getAnimal_Type();
-                String animal_name = animal.getAnimal_Name();
-                String animal_id = animal.getAnimal_ID();
-                double animal_weight = animal.getAnimal_weight();
-                String weight_unit = animal.getWeight_unit();
-                long receipt_date = animal.getReceipt_date();
-
-                System.out.println(shelter_id + " " + shelter_name + " " + animal_type +  " " + animal_name +
-                        " " + animal_id + " " + animal_weight + " " + weight_unit + " " + receipt_date);
-
-                shelterData.add(new Shelter(shelter_id, shelter_name));
-
-                animalData.add(new Animal(animal_type, animal_name, animal_id, animal_weight, weight_unit, receipt_date));
-
-//                table.setItems(shelterData);
+                animalData.add(animal);
                 table.setItems(animalData);
-                System.out.println(animalData);
+//                System.out.println(animalData);
             }
         }
 
@@ -151,7 +137,7 @@ public class Controller {
         receiptDate.setPrefWidth(105);
         receiptDate.setCellValueFactory(new PropertyValueFactory<>("receipt_date"));
 
-
+        
         table.getColumns().addAll(animalType, animalName, animalID, animalWeight, weightUnit, receiptDate);
         table.setPrefWidth(800);
         table.setPrefHeight(900);
