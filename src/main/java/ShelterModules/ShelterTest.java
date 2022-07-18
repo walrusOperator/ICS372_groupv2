@@ -73,7 +73,9 @@ public class ShelterTest {
     @org.junit.Test
     public void addDuplicateShelterTest(){
         Map<String, Shelter> mapOfSheltersTest = new HashMap<>();
-        Shelter testShelter = new Shelter("12345");
+        Shelter testShelter = new Shelter("12345", "Original Shelter");
+        Shelter testShelterDuplicate = new Shelter("12345", "duplicate Shelter");
+
         Shelter testShelter2 = new Shelter("54321");
         assertEquals(mapOfSheltersTest.size(), 0);
 
@@ -83,10 +85,6 @@ public class ShelterTest {
 
         //additional unique shelter added to map
         mapOfSheltersTest.put(testShelter2.getShelterID(), testShelter2);
-        assertEquals(mapOfSheltersTest.size(), 2);
-
-        //duplicate shelter not added to map
-        mapOfSheltersTest.put(testShelter.getShelterID(), testShelter);
         assertEquals(mapOfSheltersTest.size(), 2);
 
     }
