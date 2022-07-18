@@ -66,8 +66,8 @@ public class Shelter {
         receiving = status;
     }
     /**
-     * Method to toggle isReceiving attribute of a ShelterModules.Shelter object to receiving or not receiving based on
-     * submitted shelter name and boolean value.
+     * Method to toggle isReceiving attribute of a Shelter object to receiving or not receiving based on
+     * boolean value.
      * @param status - (boolean) true enables receiving, false disables
      */
     public void changeReceiving(boolean status) {
@@ -80,8 +80,8 @@ public class Shelter {
         }
     }
     /**
-     * Method responsible for adding ShelterModules.Animal object into previously created ShelterModules.Shelter object
-     * @param newAnimal - (ShelterModules.Animal) animal object to be added to shelter object
+     * Method responsible for adding Animal object into previously created Shelter object
+     * @param newAnimal - (Animal) animal object to be added to shelter object
      * @param selected - (String) shelter ID
      */
     public static void addUserCreatedAnimal(Animal newAnimal, String selected, ShelterList shelter){

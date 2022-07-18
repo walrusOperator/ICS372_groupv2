@@ -1,13 +1,6 @@
 package ShelterModules;
 
-import org.json.simple.*;
-import org.json.simple.JSONObject;
-
 import java.util.*;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 public class ShelterList {
     Map<String, Shelter> mapOfShelters = new HashMap<>();
@@ -39,7 +32,7 @@ public class ShelterList {
     /**
      * Returns a ShelterModules.Shelter that corresponds to the
      * @param id - (String) user given id
-     * @return (ShelterModules.Shelter) - ShelterModules.Shelter based on corresponding id.
+     * @return (Shelter) - Shelter based on corresponding id.
      */
     public Shelter getShelter(String id){
         return mapOfShelters.get(id);

@@ -11,13 +11,14 @@ public class Animal {
     private long receipt_date;
 
     /**
-     * ShelterModules.Animal Constructor - responsible for creating/setting animal variables with the passed on parameters
+     * Animal Constructor - responsible for creating/setting animal variables with the passed on parameters
      *
-     * @param animal_type
-     * @param animal_name
-     * @param animal_id
-     * @param animal_weight
-     * @param receipt_date
+     * @param animal_type - (String) the general species of animal
+     * @param animal_name - (String) the name of the animal
+     * @param animal_id - (String) ID of the animal
+     * @param animal_weight - (double) numeric weight of the animal
+     * @param weight_unit - (String) unit of the animal's weight
+     * @param receipt_date - (long) date the animal was received
      */
     public Animal(String animal_type, String animal_name, String animal_id, double animal_weight, String weight_unit, long receipt_date){
         this.animal_Type = animal_type;
@@ -29,42 +30,22 @@ public class Animal {
 
     }
 
-    /**
-     * getAnimal_ID method - responsible for getting the animal ID
-     * @return
-     */
     public String getAnimal_ID() {
         return animal_ID;
     }
 
-    /**
-     * getAnimal_Type method - responsible for getting animal type
-     * @return
-     */
     public String getAnimal_Type() {
         return animal_Type;
     }
 
-    /**
-     * getAnimal_Name() method - responsible for getting animal name
-     * @return
-     */
     public String getAnimal_Name() {
         return animal_Name;
     }
 
-    /**
-     * setAnimal_weight method - responsible for setting the animal_weight
-     * @param animal_weight
-     */
     public void setAnimal_weight(double animal_weight) {
         this.animal_weight = animal_weight;
     }
 
-    /**
-     * getAnimal_weight method - responsible for getting animal weight
-     * @return
-     */
     public double getAnimal_weight() {
         return animal_weight;
     }
@@ -73,18 +54,10 @@ public class Animal {
         return weight_unit;
     }
 
-    /**
-     * getReceipt_date() method - responsible for getting the receipt date of animal
-     * @return
-     */
     public long getReceipt_date() {
         return receipt_date;
     }
 
-    /**
-     * toString method - responsible for printing out ShelterModules.Animal's variables
-     * @return
-     */
     @Override
     public String toString() {
         return "Animal ID='" + animal_ID + '\'' +
@@ -95,8 +68,8 @@ public class Animal {
     }
 
     /**
-     * Method responsible for collecting user input to create new ShelterModules.Animal object
-     * @return (ShelterModules.Animal) - user defined animal object
+     * Method responsible for collecting user input to create new Animal object
+     * @return (Animal) - user defined animal object
      */
     public static Animal createNewAnimal(ShelterList shelterMap) {
         Scanner scan = new Scanner(System.in);

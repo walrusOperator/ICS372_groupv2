@@ -1,8 +1,5 @@
 package ShelterModules;
 
-
-import java.util.HashMap;
-
 public class Main {
     private static final ShelterList shelterMap = new ShelterList();
     @SuppressWarnings("InfiniteLoopStatement")

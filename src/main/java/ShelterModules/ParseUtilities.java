@@ -112,15 +112,11 @@ public class ParseUtilities {
     }
 
     public static boolean validElement(Element element, String tag){
-        if(element.getElementsByTagName(tag).item(0) != null)
-            return true;
-        return false;
+        return element.getElementsByTagName(tag).item(0) != null;
     }
 
     public static boolean validAttribute(Node node, String tag){
-        if(node.getAttributes().getNamedItem(tag)!= null)
-            return true;
-        return false;
+        return node.getAttributes().getNamedItem(tag) != null;
     }
 
     public static String getAttribute(Node node, String tag){
