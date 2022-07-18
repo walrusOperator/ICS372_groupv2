@@ -56,6 +56,8 @@ public class Controller {
     String selected;
     static final ShelterList shelterMap = new ShelterList();
     private final TableView<Animal> table = new TableView<>();
+    static ObservableList<Shelter> shelterData = FXCollections.observableArrayList();
+    static ObservableList<Animal> animalData = FXCollections.observableArrayList();
 
     public void importing(ActionEvent e){
         String filename = "Project1_input.json";
@@ -113,13 +115,11 @@ public class Controller {
 
                 System.out.println(shelter_id + " " + shelter_name + " " + animal_type +  " " + animal_name +
                         " " + animal_id + " " + animal_weight + " " + weight_unit + " " + receipt_date);
-                ObservableList<Shelter> shelterData = FXCollections.observableArrayList(
-                        new Shelter(shelter_id, shelter_name)
-                );
 
-                ObservableList<Animal> animalData = FXCollections.observableArrayList(
-                        new Animal(animal_type, animal_name, animal_id, animal_weight, weight_unit, receipt_date)
-                );
+                shelterData.add(new Shelter(shelter_id, shelter_name));
+
+                animalData.add(new Animal(animal_type, animal_name, animal_id, animal_weight, weight_unit, receipt_date));
+
 //                table.setItems(shelterData);
                 table.setItems(animalData);
                 System.out.println(animalData);
