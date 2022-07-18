@@ -31,6 +31,7 @@ public class Controller5 implements Initializable {
     private final Shelter[] shelterList = shelterMap.getShelters().toArray(new Shelter[0]);
 
     public void initialize(URL arg0, ResourceBundle arg1) {
+
         shelterChoiceBox.getItems().addAll(shelterList);
     }
 
