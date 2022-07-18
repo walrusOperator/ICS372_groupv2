@@ -3,12 +3,12 @@ package ShelterModules;
 import java.util.Scanner;
 
 public class Animal {
-    private String animal_ID;
-    private String animal_Type;
-    private String animal_Name;
-    private String weight_unit;
+    private final String animal_ID;
+    private final String animal_Type;
+    private final String animal_Name;
+    private final String weight_unit;
     private double animal_weight;
-    private long receipt_date;
+    private final long receipt_date;
 
     /**
      * ShelterModules.Animal Constructor - responsible for creating/setting animal variables with the passed on parameters

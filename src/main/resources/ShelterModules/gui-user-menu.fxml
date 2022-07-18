@@ -20,7 +20,12 @@
       <Button fx:id="enableButton" layoutX="20.0" layoutY="148.0" mnemonicParsing="false" onAction="#enable" text="Enable Receiving" />
       <Button fx:id="disableButton" layoutX="20.0" layoutY="197.0" mnemonicParsing="false" onAction="#disable" text="Disable Receiving" />
       <Button fx:id="seeAnimalButton" layoutX="20.0" layoutY="245.0" mnemonicParsing="false" onAction="#seeAnimal" text="See Animals in a Shelter" />
-      <Button fx:id="seeAnimalAllShelterButton" layoutX="20.0" layoutY="294.0" mnemonicParsing="false" onAction="#seeAnimalAllShelters" text="See Animals in All Shelter" />
-      <Button fx:id="exportButton" layoutX="20.0" layoutY="340.0" mnemonicParsing="false" onAction="#export" text="Export JSON of Animals" />
+      <Button fx:id="seeAnimalAllShelterButton" layoutX="17.0" layoutY="296.0" mnemonicParsing="false" onAction="#seeAnimalAllShelters" text="See Animals in All Shelter" />
+      <Button fx:id="exportButton" layoutX="20.0" layoutY="351.0" mnemonicParsing="false" onAction="#export" text="Export JSON of Animals" />
+      <Button fx:id="importXML" layoutX="20.0" layoutY="405.0" mnemonicParsing="false" onAction="#importXML" text="Import XML of Animals">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

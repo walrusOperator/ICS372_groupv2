@@ -9,5 +9,5 @@ module ShelterModules {
     requires java.xml;
 
     opens ShelterModules to javafx.fxml;
-    exports ShelterModules to javafx.graphics;
+    exports ShelterModules to javafx.graphics, javafx.base;
 }
