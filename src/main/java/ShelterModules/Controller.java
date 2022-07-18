@@ -80,7 +80,7 @@ public class Controller implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        //FileUtilities.writeJSON(shelterMap, saveName);
+        FileUtilities.writeJSON(shelterMap, saveName);
     }
     public void enable(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("shelterList.fxml")));
