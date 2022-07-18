@@ -7,6 +7,7 @@ module ShelterModules {
     requires json.simple;
     requires org.json;
     requires java.xml;
+    requires junit;
 
     opens ShelterModules to javafx.fxml;
     exports ShelterModules to javafx.graphics;
