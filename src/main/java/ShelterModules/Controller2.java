@@ -1,5 +1,7 @@
 package ShelterModules;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,20 +67,23 @@ public class Controller2 implements Initializable {
         shelterChoiceBox.getItems().addAll(shelterList);
         typeChoiceBox.getItems().addAll(animalType);
     }
-    public void enter(ActionEvent e){
+    public void enter(ActionEvent e) throws IOException {
+        String shelter = String.valueOf(shelterChoiceBox.getSelectionModel().selectedItemProperty().getValue());
+        String animal_Type = String.valueOf(typeChoiceBox.getSelectionModel().selectedItemProperty().getValue());
         String animal_ID = idTextField.getText();
         String animal_Name = nameTextField.getText();
         double animal_weight = Double.parseDouble(weightTextField.getText());
-        String animal_unit = weightUnitTextField.getText();
+        String weight_unit = weightUnitTextField.getText();
         long receipt_date = Long.parseLong(receiptTextField.getText());
 
         if (shelterChoiceBox.getValue().isReceiving()) {
-            Animal newAnimal = new Animal(typeChoiceBox.getValue(),animal_Name,animal_ID,animal_weight,animal_unit,receipt_date);
-            Shelter.addUserCreatedAnimal(newAnimal, String.valueOf(shelterChoiceBox.getValue()), shelterMap);
+            Animal newAnimal = new Animal(animal_Type,animal_Name,animal_ID,animal_weight,weight_unit,receipt_date);
+            if(newAnimal != null){
+                Shelter.addUserCreatedAnimal(newAnimal, shelter, shelterMap);
+                System.out.println(newAnimal);
+            }
         }
-    }
 
-    public void exit(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);

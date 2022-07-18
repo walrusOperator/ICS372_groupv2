@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="508.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ShelterModules.Controller6">
+<AnchorPane prefHeight="508.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ShelterModules.Controller5">
    <children>
       <Button fx:id="enterButton" layoutX="285.0" layoutY="190.0" mnemonicParsing="false" onAction="#onEnter" text="Enter" />
       <Label fx:id="label4" layoutX="231.0" layoutY="68.0" prefHeight="17.0" prefWidth="161.0" text="Select a shelter:">

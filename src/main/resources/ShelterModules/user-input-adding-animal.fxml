@@ -51,7 +51,6 @@
          </font>
       </Label>
       <ChoiceBox fx:id="shelterChoiceBox" layoutX="106.0" layoutY="81.0" prefHeight="26.0" prefWidth="160.0" />
-      <Button fx:id="exitButton" layoutX="531.0" layoutY="13.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
       <TextField fx:id="weightUnitTextField" layoutX="106.0" layoutY="329.0" />
       <Label fx:id="weightUnitLabel" layoutX="24.0" layoutY="334.0" prefHeight="17.0" prefWidth="78.0" text="Weight Unit:">
          <font>

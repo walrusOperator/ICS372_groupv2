@@ -59,7 +59,7 @@ public class Controller {
 
     public void importing(ActionEvent e){
         String filename = "Project1_input.json";
-        shelterMap.addIncomingJSON(filename);
+        ParseUtilities.addIncomingJSON(filename, shelterMap);
         System.out.println("Importing JSON file...");
     }
     public void userInputAddingAnimal(ActionEvent e) throws IOException {
@@ -113,13 +113,23 @@ public class Controller {
 
                 System.out.println(shelter_id + " " + shelter_name + " " + animal_type +  " " + animal_name +
                         " " + animal_id + " " + animal_weight + " " + weight_unit + " " + receipt_date);
+                ObservableList<Shelter> shelterData = FXCollections.observableArrayList(
+                        new Shelter(shelter_id, shelter_name)
+                );
+
+                ObservableList<Animal> animalData = FXCollections.observableArrayList(
+                        new Animal(animal_type, animal_name, animal_id, animal_weight, weight_unit, receipt_date)
+                );
+                table.setItems(shelterData);
+                table.setItems(animalData);
+                System.out.println(animalData);
             }
         }
 
-        TableColumn<Animal, String> shelterID = new TableColumn<>("Shelter ID");
+        TableColumn<Shelter, String> shelterID = new TableColumn<>("Shelter ID");
         shelterID.setPrefWidth(100);
         shelterID.setCellValueFactory(new PropertyValueFactory<>("shelterID"));
-        TableColumn<Animal, String> shelterName = new TableColumn<>("Shelter Name");
+        TableColumn<Shelter, String> shelterName = new TableColumn<>("Shelter Name");
         shelterName.setPrefWidth(100);
         shelterName.setCellValueFactory(new PropertyValueFactory<>("shelterName"));
         TableColumn<Animal, String> animalType = new TableColumn<>("Animal Type");
@@ -141,7 +151,8 @@ public class Controller {
         receiptDate.setPrefWidth(105);
         receiptDate.setCellValueFactory(new PropertyValueFactory<>("receipt_date"));
 
-        table.getColumns().addAll(shelterID, shelterName,animalType, animalName, animalID, animalWeight, weightUnit, receiptDate);
+
+        table.getColumns().addAll(shelterID, shelterName, animalType, animalName, animalID, animalWeight, weightUnit, receiptDate);
         table.setPrefWidth(800);
         table.setPrefHeight(900);
         table.setEditable(true);
@@ -158,13 +169,13 @@ public class Controller {
     }
     public void export(ActionEvent e){
         String filename = "ProjectOutput.json";
-        Utilities.writeJSON(shelterMap, filename);
+        FileUtilities.writeJSON(shelterMap, filename);
         System.out.println("Exporting");
     }
 
     public void importXML(ActionEvent e){
         String filename = "sample.xml";
-        Utilities.parseIncomingXML(filename, shelterMap);
+        ParseUtilities.parseIncomingXML(filename, shelterMap);
         System.out.println("Importing XML file...");
     }
     public void exit(ActionEvent e){

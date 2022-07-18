@@ -1,7 +1,6 @@
 package ShelterModules;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,24 +19,23 @@ import java.util.ResourceBundle;
 
 import static ShelterModules.Controller.shelterMap;
 
-
 public class Controller5 implements Initializable {
     @FXML
-    private Label myLabel3;
-    @FXML
-    private ChoiceBox<Shelter> shelterChoiceBox;
+    private Label label4;
     @FXML
     private Button enterButton;
+    @FXML
+    private ChoiceBox<Shelter> shelterListChoiceBox;
+
     private final Shelter[] shelterList = shelterMap.getShelters().toArray(new Shelter[0]);
 
     public void initialize(URL arg0, ResourceBundle arg1) {
-
-        shelterChoiceBox.getItems().addAll(shelterList);
+        shelterListChoiceBox.getItems().addAll(shelterList);
     }
 
     public void onEnter(ActionEvent e) throws IOException {
-        shelterChoiceBox.getValue().changeReceiving(true);
-        System.out.println(shelterChoiceBox.getValue().isReceiving());
+        shelterListChoiceBox.getValue().changeReceiving(false);
+        System.out.println(shelterListChoiceBox.getValue().isReceiving());
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
