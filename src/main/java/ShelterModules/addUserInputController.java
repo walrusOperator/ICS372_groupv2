@@ -1,7 +1,5 @@
 package ShelterModules;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,16 +17,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collection;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static ShelterModules.Controller.shelterMap;
+import static ShelterModules.guiMainController.shelterMap;
 
-public class Controller2 implements Initializable {
+public class addUserInputController implements Initializable {
     @FXML
     private AnchorPane scene2;
     @FXML

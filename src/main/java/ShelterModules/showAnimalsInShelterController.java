@@ -22,9 +22,9 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static ShelterModules.Controller.shelterMap;
+import static ShelterModules.guiMainController.shelterMap;
 
-public class Controller3 implements Initializable {
+public class showAnimalsInShelterController implements Initializable {
 
     @FXML
     private ChoiceBox<Shelter> shelterChoiceBox;

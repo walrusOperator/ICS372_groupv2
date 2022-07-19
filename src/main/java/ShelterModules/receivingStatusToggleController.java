@@ -20,10 +20,10 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static ShelterModules.Controller.shelterMap;
+import static ShelterModules.guiMainController.shelterMap;
 
 
-public class Controller4 implements Initializable {
+public class receivingStatusToggleController implements Initializable {
     @FXML
     private Label myLabel3;
     @FXML
