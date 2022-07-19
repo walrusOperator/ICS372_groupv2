@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,11 +16,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -64,11 +68,18 @@ public class Controller2 implements Initializable {
     private final String[] animalType = {"Dog", "Cat", "Bird", "Rabbit"};
     private final Shelter[] shelterList = shelterMap.getShelters().toArray(new Shelter[0]);
 
-    public void initialize(URL arg0, ResourceBundle arg1){
+    public void initialize(URL arg0, ResourceBundle arg1) {
         shelterChoiceBox.getItems().addAll(shelterList);
         typeChoiceBox.getItems().addAll(animalType);
     }
+
     public void enter(ActionEvent e) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
         Shelter shelter = shelterChoiceBox.getSelectionModel().selectedItemProperty().getValue();
         String animal_Type = String.valueOf(typeChoiceBox.getSelectionModel().selectedItemProperty().getValue());
         String animal_ID = idTextField.getText();
@@ -78,16 +89,47 @@ public class Controller2 implements Initializable {
         long receipt_date = Long.parseLong(receiptTextField.getText());
 
         if (shelterChoiceBox.getValue().isReceiving()) {
-            Animal newAnimal = new Animal(animal_Type,animal_Name,animal_ID,animal_weight,weight_unit,receipt_date);
+            Animal newAnimal = new Animal(animal_Type, animal_Name, animal_ID, animal_weight, weight_unit, receipt_date);
             Shelter.addUserCreatedAnimal(newAnimal, shelter.getShelterID(), shelterMap);
+
+
+            if (shelter.getAnimalList().contains(newAnimal)){
+                scene = new Scene(new Group());
+                stage = new Stage();
+                stage.setTitle("Add Animal Status");
+                stage.setWidth(400);
+                stage.setHeight(80);
+
+                Label myLabel = new Label("Animal: " + newAnimal.getAnimal_Name() + " was successfully added!");
+                final VBox vbox = new VBox();
+                vbox.setSpacing(5);
+                vbox.setPadding(new Insets(10, 0, 0, 10));
+                vbox.getChildren().addAll(myLabel);
+
+                ((Group) scene.getRoot()).getChildren().addAll(vbox);
+
+                stage.setScene(scene);
+                stage.show();
+            } else {
+                scene = new Scene(new Group());
+                stage = new Stage();
+                stage.setTitle("Add Animal Status");
+                stage.setWidth(400);
+                stage.setHeight(80);
+
+                Label myLabel = new Label("Animal: " + newAnimal.getAnimal_Name() + " was not successfully added!");
+                final VBox vbox = new VBox();
+                vbox.setSpacing(5);
+                vbox.setPadding(new Insets(10, 0, 0, 10));
+                vbox.getChildren().addAll(myLabel);
+
+                ((Group) scene.getRoot()).getChildren().addAll(vbox);
+
+                stage.setScene(scene);
+                stage.show();
+            }
         }
 
         FileUtilities.writeJSON(shelterMap, "Save_Data.json");
-
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 }
