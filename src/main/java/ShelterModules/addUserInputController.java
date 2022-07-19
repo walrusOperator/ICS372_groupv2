@@ -24,6 +24,9 @@ import java.util.ResourceBundle;
 
 import static ShelterModules.guiMainController.shelterMap;
 
+/**
+ * Controller class that controls the window of user's input and adding new animal into selected shelter.
+ */
 public class addUserInputController implements Initializable {
     @FXML
     private AnchorPane scene2;
@@ -69,6 +72,11 @@ public class addUserInputController implements Initializable {
         typeChoiceBox.getItems().addAll(animalType);
     }
 
+    /**
+     * Method used to add animal based on user's input once animal attributes are inputted.
+     * @param e - once button is click, event occurs.
+     * @throws IOException
+     */
     public void enter(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();

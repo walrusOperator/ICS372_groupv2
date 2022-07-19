@@ -25,6 +25,10 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * GUI Controller - use to controller display the first layer of GUI with buttons for user to select.
+ *
+ */
 
 public class guiMainController implements Initializable {
     @FXML
@@ -57,17 +61,35 @@ public class guiMainController implements Initializable {
     static ObservableList<Shelter> shelterData = FXCollections.observableArrayList();
     static ObservableList<Animal> animalData = FXCollections.observableArrayList();
 
+    /**
+     * Method used to initialize save data on start of program.
+     *
+     * @param arg0
+     * @param arg1
+     */
+
     public void initialize(URL arg0, ResourceBundle arg1) {
         shelterMap.addHashMap(ParseUtilities.loadJSON("Save_Data.json"));
         System.out.println("Importing Save Data...");
     }
 
+    /**
+     * Method used to import JSON file.
+     *
+     * @param e - once button is click, event occurs.
+     */
     public void importing(ActionEvent e){
         String filename = "Project1_input.json";
         ParseUtilities.addIncomingJSON(filename, shelterMap);
         System.out.println("Importing JSON file...");
         FileUtilities.writeJSON(shelterMap, saveName);
     }
+
+    /**
+     * Method used to display new window for adding animal by user's input.
+     * @param e - once button is click, event occurs.
+     * @throws IOException
+     */
     public void userInputAddingAnimal(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user-input-adding-animal.fxml")));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -76,6 +98,12 @@ public class guiMainController implements Initializable {
         stage.show();
         FileUtilities.writeJSON(shelterMap, saveName);
     }
+
+    /**
+     * Method used to display new window for toggle receiving true/false.
+     * @param e - once button is click, event occurs.
+     * @throws IOException
+     */
     public void enable(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("shelterList.fxml")));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -84,15 +112,12 @@ public class guiMainController implements Initializable {
         stage.show();
         FileUtilities.writeJSON(shelterMap, saveName);
     }
-    public void disable(ActionEvent e) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("selectShelterList2.fxml")));
-        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Disable receiving...");
-        FileUtilities.writeJSON(shelterMap, saveName);
-    }
+
+    /**
+     * Method used to display new window for user to select which shelter to look at animals.
+     * @param e - once button is click, event occurs.
+     * @throws IOException
+     */
     public void seeAnimal(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("selectShelterList3.fxml")));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -100,6 +125,11 @@ public class guiMainController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Method used to display a new window with all Animals and all Shelters.
+     * @param e - once button is click, event occurs.
+     */
     public void seeAnimalAllShelters(ActionEvent e) {
         Scene scene = new Scene(new Group());
         stage = new Stage();
@@ -147,7 +177,7 @@ public class guiMainController implements Initializable {
         table.getColumns().clear();
         table.getColumns().addAll(animalType, animalName, animalID, animalWeight, weightUnit, receiptDate);
         table.setPrefWidth(800);
-        table.setPrefHeight(900);
+        table.setPrefHeight(600);
         table.setEditable(true);
 
         final VBox vbox = new VBox();
@@ -162,18 +192,32 @@ public class guiMainController implements Initializable {
 
         stage.setOnCloseRequest(event -> table.getItems().clear());
     }
+
+    /**
+     * Method used to export file into a .json.
+     * @param e - once button is click, event occurs.
+     */
     public void export(ActionEvent e){
         String filename = "ProjectOutput.json";
         FileUtilities.writeJSON(shelterMap, filename);
         System.out.println("Exporting");
     }
 
+    /**
+     * Method used to import XML file.
+     * @param e - once button is click, event occurs.
+     */
     public void importXML(ActionEvent e){
         String filename = "sample.xml";
         ParseUtilities.parseIncomingXML(filename, shelterMap);
         System.out.println("Importing XML file...");
         FileUtilities.writeJSON(shelterMap, saveName);
     }
+
+    /**
+     * Method used to exit the GUI and save data to .json file.
+     * @param e - once button is click, event occurs.
+     */
     public void exit(ActionEvent e){
         stage = (Stage) scenePane.getScene().getWindow();
         System.out.println("Exiting");

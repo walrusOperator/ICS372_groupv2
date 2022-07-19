@@ -22,6 +22,9 @@ import java.util.ResourceBundle;
 
 import static ShelterModules.guiMainController.shelterMap;
 
+/**
+ * Controller that controls the window to changing the receiving of a shelter once shelter is selected by user.
+ */
 
 public class receivingStatusToggleController implements Initializable {
     @FXML
@@ -33,10 +36,14 @@ public class receivingStatusToggleController implements Initializable {
     private final Shelter[] shelterList = shelterMap.getShelters().toArray(new Shelter[0]);
 
     public void initialize(URL arg0, ResourceBundle arg1) {
-
         shelterChoiceBox.getItems().addAll(shelterList);
     }
 
+    /**
+     * Method used to toggle/display the receiving status of selected shelter.
+     * @param e - once button is click, event occurs.
+     * @throws IOException
+     */
     public void onEnter(ActionEvent e) throws IOException {
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));

@@ -24,6 +24,9 @@ import java.util.ResourceBundle;
 
 import static ShelterModules.guiMainController.shelterMap;
 
+/**
+ * Controller used to control the window that show Animals based on a selected shelter.
+ */
 public class showAnimalsInShelterController implements Initializable {
 
     @FXML
@@ -38,6 +41,11 @@ public class showAnimalsInShelterController implements Initializable {
     private final TableView<Animal> table = new TableView<>();
     ObservableList<Animal> animalData = FXCollections.observableArrayList();
 
+    /**
+     * Method used to display animals in a shelter once is selected
+     * @param e - once button is click, event occurs.
+     * @throws IOException
+     */
     public void enter(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
