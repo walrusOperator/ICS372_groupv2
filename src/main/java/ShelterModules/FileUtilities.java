@@ -35,57 +35,6 @@ public class FileUtilities {
     }
 
     /**
-     * Loads saved file data into a HashMap
-     * @param filename - (String)
-     * @return (HashMap) - creates a new map to be merged into existing roster
-     */
-    public static HashMap<String, Shelter> loadJSON(String filename) {
-        JSONArray shelters = readJSON(filename);
-        HashMap<String, Shelter> shelterRoster = new HashMap<>();
-
-        if (shelters == null) {
-            return new HashMap<>();
-        }
-        try {
-            for (Object tempShelter : shelters.toArray()) {
-                JSONObject shelter = (JSONObject) tempShelter;
-                String id = (String) shelter.get("shelter_id");
-                String name = (String) shelter.get("shelter_name");
-                boolean receiving = (Boolean) shelter.get("shelter_receiving");
-
-                Shelter currShelter = new Shelter(id, name);
-
-                JSONArray animalList = (JSONArray) shelter.get("animals");
-                for (Object tempAnimal : animalList) {
-                    JSONObject animal = (JSONObject) tempAnimal;
-                    String aniType = (String) animal.get("animal_type");
-                    String aniName = (String) animal.get("animal_name");
-                    String aniID = (String) animal.get("animal_id");
-                    Object temp = animal.get("weight");
-                    String aniUnit = (String) animal.get("weight_unit");
-                    long aniReceipt = (Long) animal.get("receipt_date");
-                    double aniWeight;
-
-                    if (temp instanceof Double) {
-                        aniWeight = (Double) temp;
-                    } else {
-                        aniWeight = ((Long) temp).doubleValue();
-                    }
-
-                    Animal ani = new Animal(aniType, aniName, aniID, aniWeight, aniUnit, aniReceipt);
-                    currShelter.addAnimal(ani);
-                    currShelter.setReceiving(receiving);
-                }
-                shelterRoster.put(id, currShelter);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return shelterRoster;
-    }
-
-    /**
      * Method used to create a JSON output file of the given shelterList
      *
      * @param roster - (ShelterList) shelterList used to create the JSON output file

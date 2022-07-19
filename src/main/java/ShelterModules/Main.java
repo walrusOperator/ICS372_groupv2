@@ -4,7 +4,7 @@ public class Main {
     private static final ShelterList shelterMap = new ShelterList();
     @SuppressWarnings("InfiniteLoopStatement")
     public static void main(String[] args) {
-        shelterMap.addHashMap(FileUtilities.loadJSON("Save_Data.json"));
+        shelterMap.addHashMap(ParseUtilities.loadJSON("Save_Data.json"));
         do {
             UserInterface.printMenu();
             int userSelection = UserInterface.userOption();

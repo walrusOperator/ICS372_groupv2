@@ -64,7 +64,7 @@ public class Controller implements Initializable {
     static ObservableList<Animal> animalData = FXCollections.observableArrayList();
 
     public void initialize(URL arg0, ResourceBundle arg1) {
-        shelterMap.addHashMap(FileUtilities.loadJSON("Save_Data.json"));
+        shelterMap.addHashMap(ParseUtilities.loadJSON("Save_Data.json"));
         System.out.println("Importing Save Data...");
     }
 

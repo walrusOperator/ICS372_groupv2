@@ -7,6 +7,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.util.HashMap;
+
 public class ParseUtilities {
     /**
      * Reads in specified JSON file to fill out the ShelterList
@@ -48,6 +50,57 @@ public class ParseUtilities {
             }
             shelters.addAnimalToShelter(shelter_id, tempAnimal);
         }
+    }
+
+    /**
+     * Loads saved file data into a HashMap
+     * @param filename - (String)
+     * @return (HashMap) - creates a new map to be merged into existing roster
+     */
+    public static HashMap<String, Shelter> loadJSON(String filename) {
+        JSONArray shelters = FileUtilities.readJSON(filename);
+        HashMap<String, Shelter> shelterRoster = new HashMap<>();
+
+        if (shelters == null) {
+            return new HashMap<>();
+        }
+        try {
+            for (Object tempShelter : shelters.toArray()) {
+                JSONObject shelter = (JSONObject) tempShelter;
+                String id = (String) shelter.get("shelter_id");
+                String name = (String) shelter.get("shelter_name");
+                boolean receiving = (Boolean) shelter.get("shelter_receiving");
+
+                Shelter currShelter = new Shelter(id, name);
+
+                JSONArray animalList = (JSONArray) shelter.get("animals");
+                for (Object tempAnimal : animalList) {
+                    JSONObject animal = (JSONObject) tempAnimal;
+                    String aniType = (String) animal.get("animal_type");
+                    String aniName = (String) animal.get("animal_name");
+                    String aniID = (String) animal.get("animal_id");
+                    Object temp = animal.get("weight");
+                    String aniUnit = (String) animal.get("weight_unit");
+                    long aniReceipt = (Long) animal.get("receipt_date");
+                    double aniWeight;
+
+                    if (temp instanceof Double) {
+                        aniWeight = (Double) temp;
+                    } else {
+                        aniWeight = ((Long) temp).doubleValue();
+                    }
+
+                    Animal ani = new Animal(aniType, aniName, aniID, aniWeight, aniUnit, aniReceipt);
+                    currShelter.addAnimal(ani);
+                    currShelter.setReceiving(receiving);
+                }
+                shelterRoster.put(id, currShelter);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return shelterRoster;
     }
 
     /**
