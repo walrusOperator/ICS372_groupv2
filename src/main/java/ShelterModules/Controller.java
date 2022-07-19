@@ -114,6 +114,8 @@ public class Controller implements Initializable {
         stage.setWidth(820);
         stage.setHeight(1000);
 
+        shelterData.clear();
+        animalData.clear();
         for (Shelter shelter : shelterMap.getShelters()) {
             shelterData.add(shelter);
             animalData.addAll(shelter.getAnimalList());
@@ -147,7 +149,9 @@ public class Controller implements Initializable {
         receiptDate.setPrefWidth(105);
         receiptDate.setCellValueFactory(new PropertyValueFactory<>("receipt_date"));
 
+        shelterTable.getColumns().clear();
         shelterTable.getColumns().addAll(shelterID, shelterName);
+        table.getColumns().clear();
         table.getColumns().addAll(animalType, animalName, animalID, animalWeight, weightUnit, receiptDate);
         table.setPrefWidth(800);
         table.setPrefHeight(900);
