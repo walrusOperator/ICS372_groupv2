@@ -22,23 +22,24 @@
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Button fx:id="addIncomingButton" layoutX="20.0" layoutY="99.0" mnemonicParsing="false" onAction="#userInputAddingAnimal" text="Add Additional Incoming Animal">
+      <Button fx:id="importXML" layoutX="20.0" layoutY="99.0" mnemonicParsing="false" onAction="#importXML" text="Import XML of Animals">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Button fx:id="enableButton" layoutX="20.0" layoutY="148.0" mnemonicParsing="false" onAction="#enable" text="Enable Receiving">
+      <Button fx:id="enableButton" layoutX="20.0" layoutY="148.0" mnemonicParsing="false" onAction="#enable" text="Toggle Receiving">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Button fx:id="disableButton" layoutX="20.0" layoutY="197.0" mnemonicParsing="false" onAction="#disable" text="Disable Receiving">
+
+      <Button fx:id="addIncomingButton" layoutX="20.0" layoutY="296.0" mnemonicParsing="false" onAction="#userInputAddingAnimal" text="Add Additional Incoming Animal">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Button fx:id="seeAnimalButton" layoutX="20.0" layoutY="245.0" mnemonicParsing="false" onAction="#seeAnimal" text="See Animals in a Shelter">
+      <Button fx:id="seeAnimalButton" layoutX="20.0" layoutY="197.0" mnemonicParsing="false" onAction="#seeAnimal" text="See Animals in a Shelter">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Button fx:id="seeAnimalAllShelterButton" layoutX="17.0" layoutY="296.0" mnemonicParsing="false" onAction="#seeAnimalAllShelters" text="See Animals in All Shelter">
+      <Button fx:id="seeAnimalAllShelterButton" layoutX="20.0" layoutY="245.0" mnemonicParsing="false" onAction="#seeAnimalAllShelters" text="See Animals in All Shelter">
          <font>
             <Font size="15.0" />
          </font></Button>
@@ -46,10 +47,6 @@
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Button fx:id="importXML" layoutX="20.0" layoutY="405.0" mnemonicParsing="false" onAction="#importXML" text="Import XML of Animals">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
+
    </children>
 </AnchorPane>
