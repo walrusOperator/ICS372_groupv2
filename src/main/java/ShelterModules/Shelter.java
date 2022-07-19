@@ -73,11 +73,11 @@ public class Shelter {
     public void changeReceiving(boolean status) {
         setReceiving(status);
         if(status){
-            receiving = true;
-            System.out.println("Receiving enabled for shelter " + shelterID + "\n");
-        } else {
             receiving = false;
             System.out.println("Receiving disabled for shelter " + shelterID + "\n");
+        } else {
+            receiving = true;
+            System.out.println("Receiving enabled for shelter " + shelterID + "\n");
         }
     }
     /**
