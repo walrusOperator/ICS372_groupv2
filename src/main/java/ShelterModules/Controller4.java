@@ -79,8 +79,8 @@ public class Controller4 implements Initializable {
             vbox.getChildren().addAll(myLabel);
 
             ((Group) scene.getRoot()).getChildren().addAll(vbox);
-
         }
+
         stage.setScene(scene);
         stage.show();
 
