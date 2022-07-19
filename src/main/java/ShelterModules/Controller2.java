@@ -93,7 +93,7 @@ public class Controller2 implements Initializable {
             Shelter.addUserCreatedAnimal(newAnimal, shelter.getShelterID(), shelterMap);
 
 
-            if (shelter.getAnimalList().contains(newAnimal)){
+            if (!shelter.getAnimalList().contains(newAnimal)){
                 scene = new Scene(new Group());
                 stage = new Stage();
                 stage.setTitle("Add Animal Status");
@@ -128,6 +128,24 @@ public class Controller2 implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
+        }
+        else{
+            scene = new Scene(new Group());
+            stage = new Stage();
+            stage.setTitle("Receiving is False");
+            stage.setWidth(400);
+            stage.setHeight(80);
+
+            Label myLabel = new Label("Can not add animal due to receiving being false!");
+            final VBox vbox = new VBox();
+            vbox.setSpacing(5);
+            vbox.setPadding(new Insets(10, 0, 0, 10));
+            vbox.getChildren().addAll(myLabel);
+
+            ((Group) scene.getRoot()).getChildren().addAll(vbox);
+
+            stage.setScene(scene);
+            stage.show();
         }
 
         FileUtilities.writeJSON(shelterMap, "Save_Data.json");

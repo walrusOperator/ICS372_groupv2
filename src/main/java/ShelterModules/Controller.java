@@ -116,16 +116,11 @@ public class Controller implements Initializable {
 
         for (Shelter shelter : shelterMap.getShelters()) {
             shelterData.add(shelter);
-            String shelterID = shelter.getShelterID();
-
-            for(Animal animal : shelter.getAnimalList()){
-                animalData.add(animal);
-                table.setItems(animalData);
-//                System.out.println(animalData);
-            }
-
-            shelterTable.setItems(shelterData);
+            animalData.addAll(shelter.getAnimalList());
         }
+
+        table.setItems(animalData);
+        shelterTable.setItems(shelterData);
 
         TableColumn<Shelter, String> shelterID = new TableColumn<>("Shelter ID");
         shelterID.setPrefWidth(100);
@@ -168,7 +163,6 @@ public class Controller implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-        stage.setOnCloseRequest(event -> shelterTable.getItems().clear());
         stage.setOnCloseRequest(event -> table.getItems().clear());
     }
     public void export(ActionEvent e){

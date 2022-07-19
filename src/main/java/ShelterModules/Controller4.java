@@ -46,14 +46,15 @@ public class Controller4 implements Initializable {
         stage.show();
 
         if(!shelterChoiceBox.getValue().isReceiving()){
-            shelterMap.getShelter(shelterChoiceBox.getValue().getShelterID()).changeReceiving(true);
+            shelterMap.getShelter(shelterChoiceBox.getValue().getShelterID()).setReceiving(true);
             scene = new Scene(new Group());
             stage = new Stage();
             stage.setTitle("Receiving Status");
             stage.setWidth(400);
             stage.setHeight(80);
 
-            Label myLabel = new Label("Shelter :" + shelterChoiceBox.getValue() + " receiving status changed to " + shelterChoiceBox.getValue().isReceiving());
+            Label myLabel = new Label("Shelter :" + shelterChoiceBox.getValue() + " receiving status changed to " +
+                                    shelterMap.getShelter(shelterChoiceBox.getValue().getShelterID()).isReceiving());
             final VBox vbox = new VBox();
             vbox.setSpacing(5);
             vbox.setPadding(new Insets(10, 0, 0, 10));
@@ -61,18 +62,17 @@ public class Controller4 implements Initializable {
 
             ((Group) scene.getRoot()).getChildren().addAll(vbox);
 
-            stage.setScene(scene);
-            stage.show();
         }
         else{
-            shelterMap.getShelter(shelterChoiceBox.getValue().getShelterID()).changeReceiving(false);
+            shelterMap.getShelter(shelterChoiceBox.getValue().getShelterID()).setReceiving(false);
             scene = new Scene(new Group());
             stage = new Stage();
             stage.setTitle("Receiving Status");
             stage.setWidth(400);
             stage.setHeight(80);
 
-            Label myLabel = new Label("Shelter " + shelterChoiceBox.getValue() + " receiving status changed to " + shelterChoiceBox.getValue().isReceiving());
+            Label myLabel = new Label("Shelter " + shelterChoiceBox.getValue() + " receiving status changed to " +
+                                        shelterMap.getShelter(shelterChoiceBox.getValue().getShelterID()).isReceiving());
             final VBox vbox = new VBox();
             vbox.setSpacing(5);
             vbox.setPadding(new Insets(10, 0, 0, 10));
@@ -80,9 +80,9 @@ public class Controller4 implements Initializable {
 
             ((Group) scene.getRoot()).getChildren().addAll(vbox);
 
-            stage.setScene(scene);
-            stage.show();
         }
+        stage.setScene(scene);
+        stage.show();
 
         FileUtilities.writeJSON(shelterMap, "Save_Data.json");
     }
