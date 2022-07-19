@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
  *
  */
 
-public class guiMainController implements Initializable {
+public class ControllerGuiMain implements Initializable {
     @FXML
     private AnchorPane scenePane;
     @FXML

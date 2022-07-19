@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="486.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ShelterModules.showAnimalsInShelterController">
+            fx:controller="ShelterModules.ControllerShowAnimalsInShelter">
    <Button fx:id="enterButton" layoutX="308.0" layoutY="218.0" mnemonicParsing="false" onAction="#enter" text="Enter"/>
    <Label fx:id="label5" layoutX="262.0" layoutY="56.0" text="Please Select a Shelter:">
       <font>

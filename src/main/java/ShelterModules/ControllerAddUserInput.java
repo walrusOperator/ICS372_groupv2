@@ -22,12 +22,12 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static ShelterModules.guiMainController.shelterMap;
+import static ShelterModules.ControllerGuiMain.shelterMap;
 
 /**
  * Controller class that controls the window of user's input and adding new animal into selected shelter.
  */
-public class addUserInputController implements Initializable {
+public class ControllerAddUserInput implements Initializable {
     @FXML
     private AnchorPane scene2;
     @FXML

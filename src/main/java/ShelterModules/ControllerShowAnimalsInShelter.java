@@ -22,12 +22,12 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static ShelterModules.guiMainController.shelterMap;
+import static ShelterModules.ControllerGuiMain.shelterMap;
 
 /**
  * Controller used to control the window that show Animals based on a selected shelter.
  */
-public class showAnimalsInShelterController implements Initializable {
+public class ControllerShowAnimalsInShelter implements Initializable {
 
     @FXML
     private ChoiceBox<Shelter> shelterChoiceBox;

@@ -20,13 +20,13 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static ShelterModules.guiMainController.shelterMap;
+import static ShelterModules.ControllerGuiMain.shelterMap;
 
 /**
  * Controller that controls the window to changing the receiving of a shelter once shelter is selected by user.
  */
 
-public class receivingStatusToggleController implements Initializable {
+public class ControllerReceivingStatusToggle implements Initializable {
     @FXML
     private Label myLabel3;
     @FXML
