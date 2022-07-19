@@ -89,7 +89,6 @@ public class Controller implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        System.out.println("Enable receiving...");
         FileUtilities.writeJSON(shelterMap, saveName);
     }
     public void disable(ActionEvent e) throws IOException {
