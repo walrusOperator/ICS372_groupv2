@@ -36,7 +36,7 @@ public class Controller4 implements Initializable {
 
     public void onEnter(ActionEvent e) throws IOException {
 
-        shelterMap.getShelter(shelterChoiceBox.getValue().getShelterID()).setReceiving(true);
+        shelterMap.getShelter(shelterChoiceBox.getValue().getShelterID()).changeReceiving(true);
         FileUtilities.writeJSON(shelterMap, "Save_Data.json");
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gui-user-menu.fxml")));
