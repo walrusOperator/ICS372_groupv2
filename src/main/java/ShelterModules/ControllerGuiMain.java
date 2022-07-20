@@ -42,17 +42,21 @@ public class ControllerGuiMain implements Initializable {
     private final TableView<Shelter> shelterTable = new TableView<>();
     static ObservableList<Shelter> shelterData = FXCollections.observableArrayList();
     static ObservableList<Animal> animalData = FXCollections.observableArrayList();
+    static Boolean initialLoad = true;
 
     /**
      * Method used to initialize save data on start of program.
-     *
+     * Will only load if Boolean initialLoad is true
      * @param arg0
      * @param arg1
      */
 
     public void initialize(URL arg0, ResourceBundle arg1) {
-        shelterMap.addHashMap(ParseUtilities.loadJSON("Save_Data.json"));
-        System.out.println("Importing Save Data...");
+        if(initialLoad) {
+            shelterMap.addHashMap(ParseUtilities.loadJSON(saveName));
+            System.out.println("Importing Save Data...");
+            initialLoad = false;
+        }
     }
 
     /**
