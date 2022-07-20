@@ -33,24 +33,6 @@ import java.util.ResourceBundle;
 public class ControllerGuiMain implements Initializable {
     @FXML
     private AnchorPane scenePane;
-    @FXML
-    private Label myLabel;
-    @FXML
-    private Button importButton;
-    @FXML
-    private Button addingIncomingButton;
-    @FXML
-    private Button enableButton;
-    @FXML
-    private Button disableButton;
-    @FXML
-    private Button seeAnimalButton;
-    @FXML
-    private Button seeAnimalAllSheltersButton;
-    @FXML
-    private Button exportButton;
-    @FXML
-    private Button exitButton;
 
     Stage stage;
     String selected;

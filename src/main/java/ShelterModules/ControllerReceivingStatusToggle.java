@@ -28,13 +28,8 @@ import static ShelterModules.ControllerGuiMain.shelterMap;
 
 public class ControllerReceivingStatusToggle implements Initializable {
     @FXML
-    private Label myLabel3;
-    @FXML
     private ChoiceBox<Shelter> shelterChoiceBox;
-    @FXML
-    private Button enterButton;
     private final Shelter[] shelterList = shelterMap.getShelters().toArray(new Shelter[0]);
-
     public void initialize(URL arg0, ResourceBundle arg1) {
         shelterChoiceBox.getItems().addAll(shelterList);
     }
@@ -52,41 +47,31 @@ public class ControllerReceivingStatusToggle implements Initializable {
         stage.setScene(scene);
         stage.show();
 
+        scene = new Scene(new Group());
+        stage = new Stage();
+        stage.setTitle("Receiving Status");
+        stage.setWidth(400);
+        stage.setHeight(80);
+        Label myLabel = new Label();
+
         if(!shelterChoiceBox.getValue().isReceiving()){
             shelterMap.getShelter(shelterChoiceBox.getValue().getShelterID()).setReceiving(true);
-            scene = new Scene(new Group());
-            stage = new Stage();
-            stage.setTitle("Receiving Status");
-            stage.setWidth(400);
-            stage.setHeight(80);
-
-            Label myLabel = new Label("Shelter :" + shelterChoiceBox.getValue() + " receiving status changed to " +
+            myLabel = new Label("Shelter :" + shelterChoiceBox.getValue() + " receiving status changed to " +
                                     shelterMap.getShelter(shelterChoiceBox.getValue().getShelterID()).isReceiving());
-            final VBox vbox = new VBox();
-            vbox.setSpacing(5);
-            vbox.setPadding(new Insets(10, 0, 0, 10));
-            vbox.getChildren().addAll(myLabel);
-
-            ((Group) scene.getRoot()).getChildren().addAll(vbox);
 
         }
         else{
             shelterMap.getShelter(shelterChoiceBox.getValue().getShelterID()).setReceiving(false);
-            scene = new Scene(new Group());
-            stage = new Stage();
-            stage.setTitle("Receiving Status");
-            stage.setWidth(400);
-            stage.setHeight(80);
-
-            Label myLabel = new Label("Shelter " + shelterChoiceBox.getValue() + " receiving status changed to " +
+            myLabel = new Label("Shelter " + shelterChoiceBox.getValue() + " receiving status changed to " +
                                         shelterMap.getShelter(shelterChoiceBox.getValue().getShelterID()).isReceiving());
-            final VBox vbox = new VBox();
-            vbox.setSpacing(5);
-            vbox.setPadding(new Insets(10, 0, 0, 10));
-            vbox.getChildren().addAll(myLabel);
-
-            ((Group) scene.getRoot()).getChildren().addAll(vbox);
         }
+
+        final VBox vbox = new VBox();
+        vbox.setSpacing(5);
+        vbox.setPadding(new Insets(10, 0, 0, 10));
+        vbox.getChildren().addAll(myLabel);
+
+        ((Group) scene.getRoot()).getChildren().addAll(vbox);
 
         stage.setScene(scene);
         stage.show();

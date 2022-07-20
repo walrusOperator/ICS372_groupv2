@@ -29,41 +29,19 @@ import static ShelterModules.ControllerGuiMain.shelterMap;
  */
 public class ControllerAddUserInput implements Initializable {
     @FXML
-    private AnchorPane scene2;
-    @FXML
-    private Label label2;
-    @FXML
-    private Label shelterLabel;
-    @FXML
     private ChoiceBox<Shelter> shelterChoiceBox;
-    @FXML
-    private Label typeLabel;
     @FXML
     private ChoiceBox<String> typeChoiceBox;
     @FXML
-    private Label nameLabel;
-    @FXML
     private TextField nameTextField;
-    @FXML
-    private Label idLabel;
     @FXML
     private TextField idTextField;
     @FXML
-    private Label weightLabel;
-    @FXML
     private TextField weightTextField;
-    @FXML
-    private Label weightUnitLabel;
     @FXML
     private TextField weightUnitTextField;
     @FXML
-    private Label receiptLabel;
-    @FXML
     private TextField receiptTextField;
-    @FXML
-    private Button enterButton;
-    @FXML
-    private Button exitButton;
     private final String[] animalType = {"Dog", "Cat", "Bird", "Rabbit"};
     private final Shelter[] shelterList = shelterMap.getShelters().toArray(new Shelter[0]);
 
@@ -92,66 +70,41 @@ public class ControllerAddUserInput implements Initializable {
         String weight_unit = weightUnitTextField.getText();
         long receipt_date = Long.parseLong(receiptTextField.getText());
 
+        scene = new Scene(new Group());
+        stage = new Stage();
+        stage.setTitle("Add Animal Status");
+        stage.setWidth(400);
+        stage.setHeight(80);
+        Label myLabel = new Label();
+
         if (shelterChoiceBox.getValue().isReceiving()) {
             Animal newAnimal = new Animal(animal_Type, animal_Name, animal_ID, animal_weight, weight_unit, receipt_date);
             Shelter.addUserCreatedAnimal(newAnimal, shelter.getShelterID(), shelterMap);
 
-
             if (!shelter.getAnimalList().contains(newAnimal)){
-                scene = new Scene(new Group());
-                stage = new Stage();
                 stage.setTitle("Add Animal Status");
-                stage.setWidth(400);
-                stage.setHeight(80);
-
-                Label myLabel = new Label("Animal: " + newAnimal.getAnimal_Name() + " was successfully added!");
-                final VBox vbox = new VBox();
-                vbox.setSpacing(5);
-                vbox.setPadding(new Insets(10, 0, 0, 10));
-                vbox.getChildren().addAll(myLabel);
-
-                ((Group) scene.getRoot()).getChildren().addAll(vbox);
-
-                stage.setScene(scene);
-                stage.show();
+                myLabel = new Label("Animal: " + newAnimal.getAnimal_Name() + " was successfully added!");
             } else {
-                scene = new Scene(new Group());
-                stage = new Stage();
                 stage.setTitle("Add Animal Status");
-                stage.setWidth(400);
-                stage.setHeight(80);
 
-                Label myLabel = new Label("Animal: " + newAnimal.getAnimal_Name() + " was not successfully added!");
-                final VBox vbox = new VBox();
-                vbox.setSpacing(5);
-                vbox.setPadding(new Insets(10, 0, 0, 10));
-                vbox.getChildren().addAll(myLabel);
-
-                ((Group) scene.getRoot()).getChildren().addAll(vbox);
-
-                stage.setScene(scene);
-                stage.show();
+                myLabel = new Label("Animal: " + newAnimal.getAnimal_Name() + " was not successfully added!");
             }
         }
         else{
-            scene = new Scene(new Group());
-            stage = new Stage();
             stage.setTitle("Receiving is False");
-            stage.setWidth(400);
-            stage.setHeight(80);
-
-            Label myLabel = new Label("Can not add animal due to receiving being false!");
-            final VBox vbox = new VBox();
-            vbox.setSpacing(5);
-            vbox.setPadding(new Insets(10, 0, 0, 10));
-            vbox.getChildren().addAll(myLabel);
-
-            ((Group) scene.getRoot()).getChildren().addAll(vbox);
-
-            stage.setScene(scene);
-            stage.show();
+            myLabel = new Label("Can not add animal due to receiving being false!");
         }
+        final VBox vbox = new VBox();
+        vbox.setSpacing(5);
+        vbox.setPadding(new Insets(10, 0, 0, 10));
+        vbox.getChildren().addAll(myLabel);
+
+        ((Group) scene.getRoot()).getChildren().addAll(vbox);
+
+        stage.setScene(scene);
+        stage.show();
 
         FileUtilities.writeJSON(shelterMap, "Save_Data.json");
     }
+
 }

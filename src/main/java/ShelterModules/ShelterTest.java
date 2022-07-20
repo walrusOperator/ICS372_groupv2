@@ -74,7 +74,6 @@ public class ShelterTest {
     public void addDuplicateShelterTest(){
         Map<String, Shelter> mapOfSheltersTest = new HashMap<>();
         Shelter testShelter = new Shelter("12345", "Original Shelter");
-        Shelter testShelterDuplicate = new Shelter("12345", "duplicate Shelter");
 
         Shelter testShelter2 = new Shelter("54321");
         assertEquals(mapOfSheltersTest.size(), 0);
