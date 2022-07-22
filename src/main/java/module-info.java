@@ -10,4 +10,6 @@ module ShelterModules {
     requires junit;
 
     opens ShelterModules to javafx.fxml, javafx.base;
-    exports ShelterModules to javafx.graphics, junit;}
+    exports ShelterModules to javafx.graphics, junit;
+
+}
